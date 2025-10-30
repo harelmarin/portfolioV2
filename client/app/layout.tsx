@@ -103,7 +103,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-[#141414] text-white font-sans antialiased">
+      <body className="bg-[#0f0f12] text-white font-sans antialiased">
         {children}
       </body>
     </html>

@@ -21,11 +21,11 @@ const ProjectGallery = ({ projects }: ProjectGalleryProps) => {
         {projects.map((project, idx) => (
           <div
             key={idx}
-            className="group relative rounded-3xl border border-white/20 hover:border-white/50 bg-black/90 bg-opacity-95 transition-all overflow-hidden cursor-pointer"
+            className="group relative rounded-3xl border border-white/30 hover:border-white/50 bg-[#121316] bg-opacity-95 transition-all overflow-hidden cursor-pointer"
             onClick={() => setSelectedProject(project)}
             style={{ minHeight: '420px' }}
           >
-            <div className="relative w-full h-60 md:h-64 flex items-center justify-center bg-black/85 rounded-3xl overflow-hidden group/imagevid">
+            <div className="relative w-full h-60 md:h-64 flex items-center justify-center bg-[#0f1012] rounded-3xl overflow-hidden group/imagevid">
               {project.image ? (
                 <img
                   src={project.image}
@@ -34,7 +34,7 @@ const ProjectGallery = ({ projects }: ProjectGalleryProps) => {
                   className="object-cover w-full h-full transition-all duration-500"
                 />
               ) : project.video ? (
-                <VideoPreview src={project.video} title={project.title} />
+                <VideoPreview src={project.video} title={project.title} poster={project.image} />
               ) : null}
             </div>
             <div className="px-5 py-4 flex flex-col min-h-[120px] bg-transparent backdrop-blur">

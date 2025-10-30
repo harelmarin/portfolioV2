@@ -4,23 +4,99 @@ import React from 'react';
 interface VideoPreviewProps {
   src: string;
   title: string;
+  poster?: string; // vignette optionnelle
 }
 
-const VideoPreview = ({ src, title }: VideoPreviewProps) => {
+const VideoPreview = ({ src, title, poster }: VideoPreviewProps) => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [hovered, setHovered] = React.useState(false);
+  const [isTouchDevice, setIsTouchDevice] = React.useState(false);
+  const [generatedPoster, setGeneratedPoster] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    if (videoRef.current) {
-      if (hovered) {
-        videoRef.current.currentTime = 0;
-        videoRef.current.play();
-      } else {
-        videoRef.current.pause();
-        videoRef.current.currentTime = 0;
+    const touch = typeof window !== 'undefined' && (
+      'ontouchstart' in window ||
+      (navigator as any)?.maxTouchPoints > 0 ||
+      window.matchMedia?.('(hover: none)').matches === true
+    );
+    setIsTouchDevice(Boolean(touch));
+  }, []);
+
+  // Génération d'une vignette depuis la première frame (mobile/tactile)
+  React.useEffect(() => {
+    if (!isTouchDevice) return;
+    let revoked = false;
+    const tempVideo = document.createElement('video');
+    tempVideo.src = src;
+    tempVideo.muted = true;
+    tempVideo.playsInline = true as any;
+    tempVideo.preload = 'auto';
+    const handleLoaded = () => {
+      try {
+        // Aller légèrement après 0 pour éviter frame noire
+        tempVideo.currentTime = Math.min(0.1, tempVideo.duration || 0.1);
+      } catch {
+        // ignore
       }
+    };
+    const handleSeeked = () => {
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = tempVideo.videoWidth || 640;
+        canvas.height = tempVideo.videoHeight || 360;
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+          ctx.drawImage(tempVideo, 0, 0, canvas.width, canvas.height);
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+          if (!revoked) setGeneratedPoster(dataUrl);
+        }
+      } catch {
+        // ignore
+      }
+    };
+    tempVideo.addEventListener('loadedmetadata', handleLoaded);
+    tempVideo.addEventListener('seeked', handleSeeked);
+    // Déclenche le chargement
+    tempVideo.load();
+
+    return () => {
+      revoked = true;
+      tempVideo.removeEventListener('loadedmetadata', handleLoaded);
+      tempVideo.removeEventListener('seeked', handleSeeked);
+    };
+  }, [isTouchDevice, src]);
+
+  React.useEffect(() => {
+    if (isTouchDevice) return; // mobile: pas d'autoplay ici
+    const video = videoRef.current;
+    if (!video) return;
+    if (hovered) {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+      video.currentTime = 0;
     }
-  }, [hovered]);
+  }, [hovered, isTouchDevice]);
+
+  if (isTouchDevice) {
+    // Sur mobile/tactile: afficher l'image générée (ou poster fourni), sinon fond noir
+    const resolvedPoster = generatedPoster || poster;
+    return (
+      <div className="absolute inset-0 w-full h-full" tabIndex={-1} style={{ zIndex: 1 }}>
+        {resolvedPoster ? (
+          <img
+            src={resolvedPoster}
+            alt={title}
+            className="object-cover w-full h-full rounded-3xl"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-full rounded-3xl bg-black" aria-label={title} />
+        )}
+      </div>
+    );
+  }
 
   return (
     <div
@@ -35,10 +111,8 @@ const VideoPreview = ({ src, title }: VideoPreviewProps) => {
         src={src}
         muted
         playsInline
-        preload="metadata"
-        className={`object-cover w-full h-full rounded-3xl transition-all duration-500 filter brightness-95 contrast-110 ${
-          hovered ? 'brightness-100 saturate-125 shadow-xl' : ''
-        }`}
+        preload="auto"
+        className={`object-cover w-full h-full rounded-3xl transition-all duration-500 filter brightness-95 contrast-110`}
         title={title}
       />
     </div>

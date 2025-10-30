@@ -17,7 +17,7 @@ interface ExperienceAccordionProps {
 }
 
 const ExperienceAccordion = ({ experiences }: ExperienceAccordionProps) => {
-  const [openExpIdx, setOpenExpIdx] = useState<number | null>(0);
+  const [openExpIdx, setOpenExpIdx] = useState<number | null>(null);
 
   return (
     <div className="max-w-4xl mx-auto space-y-4">
@@ -26,9 +26,7 @@ const ExperienceAccordion = ({ experiences }: ExperienceAccordionProps) => {
         return (
           <div
             key={`${exp.company}-${exp.period}`}
-            className={`rounded-2xl border border-white/20 hover:border-white/50 bg-black/90 backdrop-blur transition-all duration-300 overflow-hidden group cursor-pointer ${
-              isOpen ? 'opacity-100' : 'opacity-90'
-            }`}
+            className={`rounded-2xl border border-white/30 hover:border-white/50 bg-[#121316] backdrop-blur transition-all duration-300 overflow-hidden group cursor-pointer ${isOpen ? 'opacity-100' : 'opacity-90'}`}
           >
             <button
               className="w-full text-left px-7 py-5 flex items-center justify-between gap-8 group cursor-pointer"
