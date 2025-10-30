@@ -115,7 +115,7 @@ const Home = () => {
       <section className="container mx-auto px-6 pt-20 pb-20 md:pb-28 flex justify-center">
         <div className="w-full max-w-2xl mx-auto px-8 py-12 text-center flex flex-col items-center bg-[#111114]/70 border border-white/10 rounded-[2.5rem] backdrop-blur-sm">
           <h1 className="font-integral text-4xl md:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-indigo-800 mb-4">
-            Marin Harel
+            Harel Marin
           </h1>
           <div className="w-24 h-1.5 rounded-full bg-gradient-to-r from-purple-700 to-indigo-800 mb-7 opacity-90" />
           <div
