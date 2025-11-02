@@ -20,59 +20,62 @@ const ExperienceAccordion = ({ experiences }: ExperienceAccordionProps) => {
   const [openExpIdx, setOpenExpIdx] = useState<number | null>(null);
 
   return (
-    <div className="max-w-4xl mx-auto space-y-4">
+    <div className="max-w-5xl mx-auto space-y-6">
       {experiences.map((exp, idx) => {
         const isOpen = openExpIdx === idx;
         return (
           <div
             key={`${exp.company}-${exp.period}`}
-            className={`rounded-2xl border border-white/30 hover:border-white/50 bg-[#121316] backdrop-blur transition-all duration-300 overflow-hidden group cursor-pointer ${isOpen ? 'opacity-100' : 'opacity-90'}`}
+            className={`border border-[#d4af37]/10 hover:border-[#d4af37]/30 bg-[#0f0f0f] transition-all duration-700 overflow-hidden group cursor-pointer ${isOpen ? 'opacity-100' : 'opacity-90'}`}
+            style={{ transition: 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1)' }}
           >
             <button
-              className="w-full text-left px-7 py-5 flex items-center justify-between gap-8 group cursor-pointer"
+              className="w-full text-left px-10 py-8 flex items-center justify-between gap-12 group cursor-pointer"
               onClick={() => setOpenExpIdx(isOpen ? null : idx)}
               style={{ background: 'transparent' }}
             >
-              <div className="flex flex-col">
-                <span className="text-xs text-white/70 mb-0.5">
+              <div className="flex flex-col flex-1">
+                <span className="text-xs text-[#e8e5df]/60 mb-2 tracking-[0.1em] uppercase font-light">
                   {exp.period} • {exp.location}
                 </span>
-                <span className="text-lg md:text-2xl font-integral text-gray-100 font-medium tracking-tight mb-1">
+                <span className="text-xl md:text-3xl font-integral text-[#f5f5f0] font-bold tracking-[0.05em] mb-3">
                   {exp.title}{' '}
-                  <span className="font-normal text-white/80">
+                  <span className="font-normal text-[#d4af37]/80">
                     — {exp.company}
                   </span>
                 </span>
-                <div className="flex flex-wrap gap-2 mt-0.5">
+                <div className="flex flex-wrap gap-3 mt-2">
                   {exp.stack.map((s) => (
                     <span
                       key={s}
-                      className="text-xs text-white/80 bg-[#232228] px-2 py-0.5 rounded-full font-normal border-none"
+                      className="text-xs text-[#e8e5df]/70 bg-transparent border border-[#d4af37]/20 px-3 py-1 font-light tracking-wide uppercase"
+                      style={{ letterSpacing: '0.08em' }}
                     >
                       {s}
                     </span>
                   ))}
                 </div>
-                <span className="inline-block h-0.5 w-8 rounded-full bg-gradient-to-r from-white/20 via-white/5 to-transparent mt-3 mb-1 opacity-60 group-hover:opacity-85 transition-all duration-300" />
+                <span className="inline-block h-[1px] w-12 bg-gradient-to-r from-[#d4af37]/40 via-[#d4af37]/20 to-transparent mt-4 opacity-60 group-hover:opacity-100 transition-all duration-500" />
               </div>
               <span
-                className={`text-gray-100 transition-transform ${
-                  isOpen ? 'rotate-90' : ''
-                }`}
+                className={`text-[#d4af37] transition-transform duration-500 text-2xl ${isOpen ? 'rotate-90' : ''}`}
               >
                 ›
               </span>
             </button>
 
             {isOpen && (
-              <div className="px-7 pb-6 pt-2 grid md:grid-cols-5 gap-4 animate-fade-expand">
+              <div className="px-10 pb-8 pt-4 grid md:grid-cols-5 gap-8 border-t border-[#d4af37]/10">
                 <div className="md:col-span-3">
-                  <p className="text-base md:text-lg text-white/90 mb-3 font-normal leading-relaxed">
+                  <p className="text-sm md:text-base text-[#e8e5df]/80 mb-6 font-light leading-relaxed tracking-wide">
                     {exp.description}
                   </p>
-                  <ul className="list-disc list-inside text-[1.08rem] text-white/90 space-y-1 pl-2">
+                  <ul className="list-none space-y-3 text-sm md:text-base text-[#e8e5df]/70 font-light leading-relaxed">
                     {exp.details.map((d) => (
-                      <li key={d}>{d}</li>
+                      <li key={d} className="flex items-start gap-3">
+                        <span className="text-[#d4af37]/60 mt-2">—</span>
+                        <span>{d}</span>
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -80,7 +83,7 @@ const ExperienceAccordion = ({ experiences }: ExperienceAccordionProps) => {
                   {exp.media?.type === 'video' && (
                     <video
                       src={exp.media.src}
-                      className="w-full rounded-xl border-none bg-black max-h-[200px] md:max-h-[190px] shadow-md"
+                      className="w-full border border-[#d4af37]/10 bg-[#0a0a0a] max-h-[240px] md:max-h-[220px]"
                       muted
                       controls
                       playsInline

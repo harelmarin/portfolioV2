@@ -35,7 +35,7 @@ const Typewriter = ({ words }: TypewriterProps) => {
   }, [displayed, deleting, index, words]);
 
   return (
-    <span className="font-spacemono border-r-2 border-purple-400 pr-1 animate-pulse">
+    <span className="font-spacemono border-r-[1px] border-[#d4af37]/60 pr-2">
       {displayed}
     </span>
   );

@@ -88,11 +88,11 @@ const VideoPreview = ({ src, title, poster }: VideoPreviewProps) => {
           <img
             src={resolvedPoster}
             alt={title}
-            className="object-cover w-full h-full rounded-3xl"
+            className="object-cover w-full h-full"
             loading="lazy"
           />
         ) : (
-          <div className="w-full h-full rounded-3xl bg-black" aria-label={title} />
+          <div className="w-full h-full bg-black" aria-label={title} />
         )}
       </div>
     );
@@ -112,7 +112,8 @@ const VideoPreview = ({ src, title, poster }: VideoPreviewProps) => {
         muted
         playsInline
         preload="auto"
-        className={`object-cover w-full h-full rounded-3xl transition-all duration-500 filter brightness-95 contrast-110`}
+        className={`object-cover w-full h-full transition-all duration-700 group-hover:scale-105`}
+        style={{ transition: 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)' }}
         title={title}
       />
     </div>
