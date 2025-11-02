@@ -114,8 +114,9 @@ const Home = () => {
     <div className="min-h-screen bg-[#0a0a0a] text-[#f5f5f0]">
       <section className="container mx-auto px-4 sm:px-6 pt-20 sm:pt-28 md:pt-32 pb-20 sm:pb-28 md:pb-40 flex justify-center">
         <div className="w-full max-w-3xl mx-auto px-4 sm:px-8 md:px-12 py-12 sm:py-16 md:py-20 text-center flex flex-col items-center">
-          <h1 className="font-integral text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-[0.08em] text-[#f5f5f0] mb-6 sm:mb-8 leading-[1.1]">
-            Harel Marin
+          <h1 className="font-integral text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-[0.05em] sm:tracking-[0.08em] text-[#f5f5f0] mb-6 sm:mb-8 leading-[1.1]">
+            <span className="block sm:inline">Marin</span>
+            <span className="block sm:inline sm:ml-10">Harel</span>
           </h1>
           <div className="w-24 sm:w-32 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-6 sm:mb-10" />
           <div

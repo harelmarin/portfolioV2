@@ -9,7 +9,7 @@ export default function MainApp() {
   return (
     <>
       {!introComplete && (
-        <Intro name="Harel Marin" onComplete={() => setIntroComplete(true)} />
+        <Intro name="Marin Harel" onComplete={() => setIntroComplete(true)} />
       )}
       {introComplete && (
         <div className="animate-fade-in">

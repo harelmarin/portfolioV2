@@ -6,7 +6,7 @@ interface IntroProps {
   name?: string;
 }
 
-const Intro = ({ onComplete, name = 'Marin Harel' }: IntroProps) => {
+const Intro = ({ onComplete, name = 'Harel Marin' }: IntroProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isLeaving, setIsLeaving] = useState(false);
 
