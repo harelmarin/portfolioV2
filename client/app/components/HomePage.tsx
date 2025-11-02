@@ -112,16 +112,15 @@ const experiences = [
 const Home = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-[#f5f5f0]">
-      <section className="container mx-auto px-6 pt-32 pb-32 md:pb-40 flex justify-center">
-        <div className="w-full max-w-3xl mx-auto px-12 py-16 md:py-20 text-center flex flex-col items-center">
-          <h1 className="font-integral text-5xl md:text-7xl lg:text-8xl font-bold tracking-[0.08em] text-[#f5f5f0] mb-8 leading-[1.1]">
+      <section className="container mx-auto px-4 sm:px-6 pt-20 sm:pt-28 md:pt-32 pb-20 sm:pb-28 md:pb-40 flex justify-center">
+        <div className="w-full max-w-3xl mx-auto px-4 sm:px-8 md:px-12 py-12 sm:py-16 md:py-20 text-center flex flex-col items-center">
+          <h1 className="font-integral text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-[0.08em] text-[#f5f5f0] mb-6 sm:mb-8 leading-[1.1]">
             Harel Marin
           </h1>
-          <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-10" />
+          <div className="w-24 sm:w-32 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-6 sm:mb-10" />
           <div
-            className="mb-6 text-xl md:text-3xl min-h-[2.3em] font-light text-[#e8e5df] tracking-[0.15em] flex justify-center items-center gap-2"
+            className="mb-4 sm:mb-6 text-lg sm:text-xl md:text-2xl lg:text-3xl min-h-[2.3em] font-light text-[#e8e5df] tracking-[0.12em] sm:tracking-[0.15em] flex justify-center items-center gap-2"
             aria-label="Présentation animée"
-            style={{ letterSpacing: '0.12em' }}
           >
             <Typewriter
               words={[
@@ -133,17 +132,18 @@ const Home = () => {
               ]}
             />
           </div>
-          <p className="text-sm md:text-base lg:text-lg text-[#e8e5df]/90 font-light max-w-2xl mb-12 leading-[2.2] tracking-wide">
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-[#e8e5df]/90 font-light max-w-2xl mb-8 sm:mb-12 leading-relaxed sm:leading-[2.2] tracking-wide px-4">
             Étudiant en Bachelor 3 à Aix Ynov, passionné de développement web &
             mobile, j'aime créer et mettre en place des projets innovants et
             intéressants.
-            <br />
+            <br className="hidden sm:block" />
+            <span className="sm:hidden"> </span>
             <span className="text-[#d4af37]/80">Basé à Aix-en-Provence</span>, toujours curieux d'explorer et d'apprendre !
           </p>
-          <div className="flex flex-wrap gap-6 justify-center mt-4">
+          <div className="flex flex-wrap gap-4 sm:gap-6 justify-center mt-2 sm:mt-4">
             <a
               href="#mes-projets"
-              className="cursor-pointer px-8 py-3 border border-[#d4af37]/30 text-[#f5f5f0] font-light tracking-[0.1em] bg-transparent hover:bg-[#d4af37]/10 hover:border-[#d4af37]/60 focus:outline-none transition-all duration-500 text-sm uppercase"
+              className="cursor-pointer px-6 sm:px-8 py-2.5 sm:py-3 border border-[#d4af37]/30 text-[#f5f5f0] font-light tracking-[0.1em] bg-transparent hover:bg-[#d4af37]/10 hover:border-[#d4af37]/60 focus:outline-none transition-all duration-500 text-xs sm:text-sm uppercase"
               style={{ 
                 transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
                 letterSpacing: '0.12em'
@@ -157,15 +157,15 @@ const Home = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Voir le GitHub de Marin Harel"
-              className="cursor-pointer p-3 border border-[#d4af37]/30 text-[#f5f5f0]/70 bg-transparent hover:bg-[#d4af37]/10 hover:border-[#d4af37]/60 hover:text-[#f5f5f0] focus:outline-none transition-all duration-500 flex items-center justify-center group"
+              className="cursor-pointer p-2.5 sm:p-3 border border-[#d4af37]/30 text-[#f5f5f0]/70 bg-transparent hover:bg-[#d4af37]/10 hover:border-[#d4af37]/60 hover:text-[#f5f5f0] focus:outline-none transition-all duration-500 flex items-center justify-center group"
               style={{ transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)' }}
             >
               <svg
                 viewBox="0 0 24 24"
-                width="20"
-                height="20"
+                width="18"
+                height="18"
+                className="sm:w-5 sm:h-5 inline-block align-middle group-hover:scale-110 transition-transform duration-500"
                 fill="currentColor"
-                className="inline-block align-middle group-hover:scale-110 transition-transform duration-500"
               >
                 <path d="M12 2C6.476 2 2 6.485 2 12.021c0 4.428 2.867 8.181 6.839 9.504.5.09.682-.217.682-.483v-1.693c-2.782.605-3.369-1.343-3.369-1.343-.454-1.153-1.11-1.461-1.11-1.461-.908-.62.07-.608.07-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.089 2.91.833.092-.648.35-1.09.636-1.341-2.221-.253-4.555-1.115-4.555-4.962 0-1.096.39-1.993 1.029-2.695-.103-.254-.447-1.276.098-2.658 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.338 1.908-1.295 2.746-1.025 2.746-1.025.547 1.382.202 2.404.1 2.658.64.702 1.027 1.599 1.027 2.695 0 3.857-2.337 4.705-4.565 4.955.359.309.678.92.678 1.855v2.75c0 .268.18.577.688.479C19.137 20.2 22 16.447 22 12.021 22 6.485 17.523 2 12 2z" />
               </svg>
@@ -173,24 +173,24 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section id="mes-projets" className="container mx-auto px-6 pb-20">
-        <div className="text-center mb-20 md:mb-28">
-          <h2 className="font-integral text-4xl md:text-6xl lg:text-7xl font-bold text-[#f5f5f0] tracking-[0.08em] mb-6 inline-flex gap-2 items-center justify-center">
+      <section id="mes-projets" className="container mx-auto px-4 sm:px-6 pb-12 sm:pb-20">
+        <div className="text-center mb-12 sm:mb-20 md:mb-28">
+          <h2 className="font-integral text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-[#f5f5f0] tracking-[0.08em] mb-4 sm:mb-6 inline-flex gap-2 items-center justify-center">
             Mes Projets
           </h2>
-          <div className="mx-auto w-24 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
+          <div className="mx-auto w-20 sm:w-24 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
         </div>
         <ProjectGallery projects={projects} />
       </section>
       <section
         id="experiences"
-        className="container mx-auto px-6 pt-8 pb-32 mt-32"
+        className="container mx-auto px-4 sm:px-6 pt-8 pb-20 sm:pb-32 mt-16 sm:mt-32"
       >
-        <div className="text-center mb-20 md:mb-28">
-          <h2 className="font-integral text-4xl md:text-6xl lg:text-7xl font-bold text-[#f5f5f0] tracking-[0.08em] mb-6 inline-flex items-center justify-center">
+        <div className="text-center mb-12 sm:mb-20 md:mb-28">
+          <h2 className="font-integral text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-[#f5f5f0] tracking-[0.08em] mb-4 sm:mb-6 inline-flex items-center justify-center">
             Expériences professionnelles
           </h2>
-          <div className="mx-auto w-32 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
+          <div className="mx-auto w-24 sm:w-32 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
         </div>
         <ExperienceAccordion experiences={experiences} />
       </section>

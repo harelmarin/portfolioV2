@@ -90,9 +90,12 @@ const VideoPreview = ({ src, title, poster }: VideoPreviewProps) => {
             alt={title}
             className="object-cover w-full h-full"
             loading="lazy"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
         ) : (
-          <div className="w-full h-full bg-black" aria-label={title} />
+          <div className="w-full h-full bg-black flex items-center justify-center" aria-label={title}>
+            <div className="text-[#d4af37]/30 text-xs uppercase tracking-wide">Video</div>
+          </div>
         )}
       </div>
     );

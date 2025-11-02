@@ -21,7 +21,7 @@ const ContactButton = () => {
       tabIndex={0}
       aria-label="Copier l'e-mail"
       onClick={handleCopy}
-      className={`cursor-pointer relative px-8 py-3 border border-[#d4af37]/30 text-[#f5f5f0] font-light tracking-[0.1em] bg-transparent hover:bg-[#d4af37]/10 hover:border-[#d4af37]/60 focus:outline-none transition-all duration-500 text-sm uppercase flex items-center gap-3 select-all`}
+      className={`cursor-pointer relative px-6 sm:px-8 py-2.5 sm:py-3 border border-[#d4af37]/30 text-[#f5f5f0] font-light tracking-[0.1em] bg-transparent hover:bg-[#d4af37]/10 hover:border-[#d4af37]/60 focus:outline-none transition-all duration-500 text-xs sm:text-sm uppercase flex items-center gap-2 sm:gap-3 select-all`}
       style={{ 
         transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
         letterSpacing: '0.12em'
