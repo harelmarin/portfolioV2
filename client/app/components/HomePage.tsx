@@ -110,13 +110,75 @@ const experiences = [
 ];
 
 const Home = () => {
+  // Structured data pour les projets
+  const projectsStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Portfolio de projets - Marin Harel',
+    description: 'Collection de projets de développement web et mobile',
+    itemListElement: projects.map((project, index) => ({
+      '@type': 'SoftwareApplication',
+      position: index + 1,
+      name: project.title,
+      description: project.description,
+      applicationCategory: 'WebApplication',
+      offers: {
+        '@type': 'Offer',
+        availability: 'https://schema.org/OnlineOnly',
+      },
+      creator: {
+        '@type': 'Person',
+        name: 'Marin Harel',
+      },
+    })),
+  };
+
+  // Structured data pour les expériences professionnelles
+  const experiencesStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Expériences professionnelles - Marin Harel',
+    itemListElement: experiences.map((exp, index) => ({
+      '@type': 'OrganizationRole',
+      position: index + 1,
+      roleName: exp.title,
+      startDate: exp.period.split('—')[0].trim(),
+      endDate: exp.period.includes('—') ? exp.period.split('—')[1].trim() : undefined,
+      worksFor: {
+        '@type': 'Organization',
+        name: exp.company,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: exp.location,
+          addressCountry: 'FR',
+        },
+      },
+    })),
+  };
+
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#f5f5f0]">
-      <section className="container mx-auto px-4 sm:px-6 pt-20 sm:pt-28 md:pt-32 pb-20 sm:pb-28 md:pb-40 flex justify-center">
+    <>
+      {/* Structured Data pour les projets */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(projectsStructuredData),
+        }}
+      />
+      {/* Structured Data pour les expériences */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(experiencesStructuredData),
+        }}
+      />
+      <div className="min-h-screen bg-[#0a0a0a] text-[#f5f5f0]">
+        <main>
+          <section className="container mx-auto px-4 sm:px-6 pt-20 sm:pt-28 md:pt-32 pb-20 sm:pb-28 md:pb-40 flex justify-center" itemScope itemType="https://schema.org/Person">
         <div className="w-full max-w-3xl mx-auto px-4 sm:px-8 md:px-12 py-12 sm:py-16 md:py-20 text-center flex flex-col items-center">
           <h1 className="font-integral text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-[0.05em] sm:tracking-[0.08em] text-[#f5f5f0] mb-6 sm:mb-8 leading-[1.1]">
-            <span className="block sm:inline">Marin</span>
-            <span className="block sm:inline sm:ml-10">Harel</span>
+            <span className="block sm:inline" itemProp="givenName">Marin</span>
+            <span className="block sm:inline sm:ml-10" itemProp="familyName">Harel</span>
           </h1>
           <div className="w-24 sm:w-32 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-6 sm:mb-10" />
           <div
@@ -174,7 +236,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section id="mes-projets" className="container mx-auto px-4 sm:px-6 pb-12 sm:pb-20">
+      <section id="mes-projets" className="container mx-auto px-4 sm:px-6 pb-12 sm:pb-20" itemScope itemType="https://schema.org/ItemList">
         <div className="text-center mb-12 sm:mb-20 md:mb-28">
           <h2 className="font-integral text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-[#f5f5f0] tracking-[0.08em] mb-4 sm:mb-6 inline-flex gap-2 items-center justify-center">
             Mes Projets
@@ -186,6 +248,8 @@ const Home = () => {
       <section
         id="experiences"
         className="container mx-auto px-4 sm:px-6 pt-8 pb-20 sm:pb-32 mt-16 sm:mt-32"
+        itemScope
+        itemType="https://schema.org/ItemList"
       >
         <div className="text-center mb-12 sm:mb-20 md:mb-28">
           <h2 className="font-integral text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-[#f5f5f0] tracking-[0.08em] mb-4 sm:mb-6 inline-flex items-center justify-center">
@@ -195,10 +259,12 @@ const Home = () => {
         </div>
         <ExperienceAccordion experiences={experiences} />
       </section>
-      <footer className="container mx-auto px-6 py-16 text-center border-t border-[#d4af37]/10">
-        <p className="text-[#e8e5df]/60 text-sm tracking-[0.1em] font-light uppercase">© 2025 - Conçu par Marin Harel</p>
+        </main>
+      <footer className="container mx-auto px-6 py-16 text-center border-t border-[#d4af37]/10" itemScope itemType="https://schema.org/WPFooter">
+        <p className="text-[#e8e5df]/60 text-sm tracking-[0.1em] font-light uppercase">© 2025 - Conçu par <span itemProp="name">Marin Harel</span></p>
       </footer>
     </div>
+    </>
   );
 };
 
