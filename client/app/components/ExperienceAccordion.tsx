@@ -67,14 +67,11 @@ const ExperienceAccordion = ({ experiences }: ExperienceAccordionProps) => {
             {isOpen && (
               <div className="px-4 sm:px-6 md:px-10 pb-6 sm:pb-8 pt-3 sm:pt-4 grid md:grid-cols-5 gap-4 sm:gap-6 md:gap-8 border-t border-[#d4af37]/10">
                 <div className="md:col-span-3">
-                  <p className="text-xs sm:text-sm md:text-base text-[#e8e5df]/80 mb-4 sm:mb-6 font-light leading-relaxed tracking-wide">
-                    {exp.description}
-                  </p>
-                  <ul className="list-none space-y-2 sm:space-y-3 text-xs sm:text-sm md:text-base text-[#e8e5df]/70 font-light leading-relaxed">
+                  <p className="text-base md:text-lg text-white/90 mb-3 font-normal leading-relaxed">{exp.description}</p>
+                  <ul className="list-disc list-outside pl-5 text-[1.08rem] text-white/90 space-y-1">
                     {exp.details.map((d) => (
-                      <li key={d} className="flex items-start gap-2 sm:gap-3">
-                        <span className="text-[#d4af37]/60 mt-1.5 sm:mt-2 flex-shrink-0">—</span>
-                        <span>{d}</span>
+                      <li key={d} className="leading-relaxed">
+                        {d}
                       </li>
                     ))}
                   </ul>
