@@ -1,51 +1,46 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 interface IntroProps {
   onComplete: () => void;
   name?: string;
 }
 
-const Intro = ({ onComplete, name = 'Harel Marin' }: IntroProps) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isLeaving, setIsLeaving] = useState(false);
-
-  useEffect(() => {
-    const enterTimeout = setTimeout(() => setIsVisible(true), 120);
-    const leaveTimeout = setTimeout(() => setIsLeaving(true), 2500);
-    const completeTimeout = setTimeout(() => onComplete(), 3200);
-    return () => {
-      clearTimeout(enterTimeout);
-      clearTimeout(leaveTimeout);
-      clearTimeout(completeTimeout);
-    };
-  }, [onComplete]);
-
+const Intro = ({ onComplete, name = 'MARIN HAREL' }: IntroProps) => {
   return (
-    <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-[#0a0a0a] transition-opacity duration-700 ${
-        isLeaving ? 'opacity-0' : 'opacity-100'
-      }`}
-      style={{ transition: 'opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1)' }}
-    >
-      <div className="text-center">
-        <h1
-          className={`font-integral text-6xl md:text-8xl lg:text-9xl font-bold text-[#f5f5f0] tracking-[0.08em] transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-          style={{ transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)' }}
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#050505] overflow-hidden">
+      <div className="relative">
+        <motion.h1
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="font-integral text-6xl md:text-9xl font-bold tracking-tighter"
         >
           {name}
-        </h1>
-        <div
-          className={`mt-8 h-[1px] w-32 mx-auto bg-gradient-to-r from-transparent via-[#d4af37] to-transparent transition-all duration-1000 delay-300 ${
-            isVisible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
-          }`}
-          style={{ transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s' }}
+        </motion.h1>
+
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          onAnimationComplete={() => {
+            setTimeout(onComplete, 1000);
+          }}
+          className="h-[2px] w-full bg-[#d4af37] mt-4 origin-left"
         />
+
+        {/* Decorative elements */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.1 }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-integral text-[15vw] md:text-[20rem] text-outline whitespace-nowrap pointer-events-none select-none -z-10"
+        >
+          BIENVENUE
+        </motion.div>
       </div>
     </div>
   );
 };
 
 export default Intro;
+

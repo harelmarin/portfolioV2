@@ -1,6 +1,25 @@
 import './globals.css';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import type { Metadata } from 'next';
+import localFont from 'next/font/local';
+
+const integral = localFont({
+  src: '../public/font/IntegralCF-Bold.ttf',
+  variable: '--font-integral',
+  display: 'swap',
+});
+
+const paralucent = localFont({
+  src: '../public/font/ParalucentCondMedium.otf',
+  variable: '--font-paralucent',
+  display: 'swap',
+});
+
+const spaceMono = localFont({
+  src: '../public/font/SpaceMono-Bold.ttf',
+  variable: '--font-spacemono',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://marinharel.fr'),
@@ -160,9 +179,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-[#0a0a0a] text-[#f5f5f0] font-sans antialiased">
+      <body className={`${integral.variable} ${paralucent.variable} ${spaceMono.variable} bg-[#050505] text-[#f5f5f0] font-sans antialiased overflow-x-hidden`}>
         {children}
-         <SpeedInsights />
+        <SpeedInsights />
       </body>
     </html>
   );

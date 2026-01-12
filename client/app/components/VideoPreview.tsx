@@ -72,7 +72,7 @@ const VideoPreview = ({ src, title, poster }: VideoPreviewProps) => {
     if (!video) return;
     if (hovered) {
       video.currentTime = 0;
-      video.play().catch(() => {});
+      video.play().catch(() => { });
     } else {
       video.pause();
       video.currentTime = 0;
@@ -88,9 +88,9 @@ const VideoPreview = ({ src, title, poster }: VideoPreviewProps) => {
           <img
             src={resolvedPoster}
             alt={title}
-            className="object-cover w-full h-full"
+            className="object-cover w-full h-full will-change-transform"
             loading="lazy"
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'translateZ(0)' }}
           />
         ) : (
           <div className="w-full h-full bg-black flex items-center justify-center" aria-label={title}>
@@ -114,9 +114,13 @@ const VideoPreview = ({ src, title, poster }: VideoPreviewProps) => {
         src={src}
         muted
         playsInline
-        preload="auto"
-        className={`object-cover w-full h-full transition-all duration-700 group-hover:scale-105`}
-        style={{ transition: 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)' }}
+        preload="metadata"
+        className={`object-cover w-full h-full transition-all duration-700 group-hover:scale-105 will-change-transform`}
+        style={{
+          transition: 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)',
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden'
+        }}
         title={title}
       />
     </div>
