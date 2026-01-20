@@ -20,10 +20,10 @@ const ModernHero = () => {
         <section ref={containerRef} className="relative min-h-[120vh] flex items-center justify-center pt-20 overflow-hidden">
             {/* Background Year Outline */}
             <motion.div
-                style={{ y: y2, opacity }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none opacity-[0.015] whitespace-nowrap z-0"
+                style={{ y: y2, opacity: opacity.get() * 0.015 }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none z-0"
             >
-                <h2 className="font-integral text-[20vw] md:text-[25vw] leading-none text-outline uppercase">
+                <h2 className="font-integral text-[15vw] md:text-[18vw] leading-none text-outline uppercase tracking-[0.1em]">
                     CRÉATIF
                 </h2>
             </motion.div>
@@ -39,7 +39,7 @@ const ModernHero = () => {
                             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                             style={{ y: y1 }}
                         >
-                            <h1 className="font-integral text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] leading-[0.75] tracking-tighter mix-blend-difference">
+                            <h1 className="font-integral text-5xl sm:text-6xl md:text-7xl lg:text-[8.5rem] leading-[0.8] tracking-[-0.04em] mix-blend-difference">
                                 MARIN
                             </h1>
                         </motion.div>
@@ -49,9 +49,9 @@ const ModernHero = () => {
                             animate={{ x: 0, opacity: 1 }}
                             transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                             style={{ y: y2 }}
-                            className="md:ml-32 mt-[-10px] sm:mt-[-20px]"
+                            className="md:ml-24 mt-0"
                         >
-                            <h1 className="font-integral text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] leading-[0.75] tracking-tighter text-[#d4af37]">
+                            <h1 className="font-integral text-5xl sm:text-6xl md:text-7xl lg:text-[8.5rem] leading-[0.8] tracking-[-0.04em] text-[#d4af37]">
                                 HAREL
                             </h1>
                         </motion.div>
@@ -70,39 +70,39 @@ const ModernHero = () => {
                         <motion.div
                             initial={{ y: 50, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
-                            transition={{ duration: 1, delay: 0.8 }}
-                            className="glass p-8 md:p-10 rounded-[2rem] border-t border-l border-white/10 backdrop-blur-2xl relative"
+                            transition={{ duration: 1.2, delay: 0.8 }}
+                            className="p-8 md:p-10 rounded-[2rem] border border-white/5 backdrop-blur-xl relative"
                         >
-                            {/* Corner accent */}
-                            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#d4af37] rounded-tl-xl" />
+                            {/* Subtle corner accent */}
+                            <div className="absolute top-0 left-0 w-6 h-6 border-t border-l border-[#d4af37]/30 rounded-tl-xl" />
 
-                            <div className="font-spacemono text-[#d4af37] text-xs mb-2 tracking-[0.3em] uppercase">
+                            <div className="font-spacemono text-[#d4af37]/60 text-[10px] mb-2 tracking-[0.4em] uppercase">
                                 // Portfolio 26'
                             </div>
-                            <div className="flex items-center gap-2 mb-6">
-                                <span className="relative flex h-2 w-2">
+                            <div className="flex items-center gap-2 mb-8">
+                                <span className="relative flex h-1.5 w-1.5">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4af37] opacity-75"></span>
-                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d4af37]"></span>
+                                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#d4af37]"></span>
                                 </span>
-                                <span className="font-spacemono text-[#d4af37] text-[10px] tracking-widest uppercase">Disponible Alternance 2026</span>
+                                <span className="font-spacemono text-[#d4af37]/80 text-[10px] tracking-[0.2em] uppercase">Disponible Alternance 2026</span>
                             </div>
-                            <div className="text-2xl md:text-3xl font-light mb-8 text-[#e8e5df] min-h-[1.5em] leading-tight">
+                            <div className="text-xl md:text-2xl font-light mb-8 text-[#e8e5df] min-h-[1.5em] leading-tight tracking-wide">
                                 <Typewriter
-                                    words={['Innovation', 'Code', 'Design', 'Exploration']}
+                                    words={['INNOVATION', 'ARCHITECTURE', 'DIGITAL CRAFT']}
                                 />
                             </div>
-                            <p className="text-[#e8e5df]/60 text-base leading-relaxed mb-10 font-light">
-                                Conception et développement d'applications numériques modernes, performantes et centrées sur l'expérience utilisateur.
+                            <p className="text-[#e8e5df]/40 text-sm leading-relaxed mb-10 font-light tracking-wide">
+                                Ingénieur logiciel spécialisé dans la conception d'applications robustes et d'expériences numériques de haute précision.
                             </p>
 
-                            <div className="flex flex-wrap gap-6">
+                            <div className="flex flex-wrap gap-4">
                                 <motion.a
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
+                                    whileHover={{ scale: 1.02, backgroundColor: '#d4af37', color: '#000' }}
+                                    whileTap={{ scale: 0.98 }}
                                     href="#mes-projets"
-                                    className="px-8 py-4 bg-white text-black font-bold uppercase tracking-widest text-xs transition-all hover:bg-[#d4af37]"
+                                    className="px-8 py-4 border border-white/10 text-white font-spacemono uppercase tracking-[0.2em] text-[10px] transition-all"
                                 >
-                                    Projets
+                                    Découvrir
                                 </motion.a>
                                 <ContactButton />
                             </div>

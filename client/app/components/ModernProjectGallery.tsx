@@ -55,36 +55,56 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
                     </div>
 
                     <motion.div
-                        className={`relative w-full ${height} overflow-hidden rounded-[2rem] bg-[#111] border border-white/10 transition-all duration-700 group-hover:border-[#d4af37]/40 group-hover:shadow-[0_30px_60px_rgba(0,0,0,0.8)]`}
+                        className={`relative w-full ${height} overflow-hidden rounded-[2.5rem] bg-[#0c0c0c] border border-white/[0.03] transition-all duration-1000 group-hover:border-[#d4af37]/20 group-hover:shadow-[0_40px_80px_rgba(0,0,0,0.9)]`}
                     >
                         {/* Media */}
                         <div className="absolute inset-0 z-0">
                             <VideoPreview src={project.video} title={project.title} poster={project.image} />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/20 to-transparent opacity-80 md:block hidden" />
                         </div>
 
-                        {/* Overlay on hover */}
-                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-[2px]">
-                            <span className="px-6 py-2 border border-[#d4af37] text-[#d4af37] font-integral text-xs uppercase tracking-[0.3em]">Découvrir</span>
+                        {/* Overlay on hover (Desktop only) */}
+                        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 md:flex hidden items-center justify-center backdrop-blur-[1px]">
+                            <span className="px-8 py-3 border border-[#d4af37]/40 text-[#d4af37] font-spacemono text-[10px] uppercase tracking-[0.4em] bg-black/40 backdrop-blur-md rounded-full transition-all duration-500 hover:bg-[#d4af37] hover:text-black hover:border-[#d4af37]">Découvrir</span>
                         </div>
 
-                        {/* Text Info (Always visible partially, fully on hover) */}
-                        <div className="absolute inset-x-0 bottom-0 z-10 p-8 md:p-12">
-                            <div className="font-spacemono text-[#d4af37] text-[10px] uppercase tracking-[0.4em] mb-2 sm:mb-4">
+                        {/* Desktop Text Info */}
+                        <div className="absolute inset-x-0 bottom-0 z-10 p-10 md:p-16 md:block hidden">
+                            <div className="font-spacemono text-[#d4af37]/60 text-[10px] uppercase tracking-[0.5em] mb-4">
                                 {project.category}
                             </div>
-                            <h3 className="font-integral text-3xl md:text-5xl mb-4 group-hover:text-[#d4af37] transition-colors duration-300">
+                            <h3 className="font-integral text-3xl md:text-5xl lg:text-6xl mb-6 tracking-tight group-hover:text-[#d4af37] transition-colors duration-500">
                                 {project.title}
                             </h3>
-                            <div className="flex flex-wrap gap-2 opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+                            <div className="flex flex-wrap gap-3 opacity-40 group-hover:opacity-100 transition-opacity duration-700">
                                 {project.stacks.map(s => (
-                                    <span key={s} className="text-[10px] font-spacemono uppercase tracking-widest text-white/50">
-                                        {s} /
+                                    <span key={s} className="text-[9px] font-spacemono uppercase tracking-[0.3em] text-white/50 border border-white/5 px-3 py-1 rounded-full bg-white/5">
+                                        {s}
                                     </span>
                                 ))}
                             </div>
                         </div>
                     </motion.div>
+
+                    {/* Mobile Text Info (Visible only on mobile, below the card) */}
+                    <div className="mt-8 px-4 md:hidden block">
+                        <div className="font-spacemono text-[#d4af37]/80 text-[10px] uppercase tracking-[0.5em] mb-2">
+                            {project.category}
+                        </div>
+                        <h3 className="font-integral text-3xl mb-4 tracking-tight">
+                            {project.title}
+                        </h3>
+                        <div className="flex flex-wrap gap-2">
+                            {project.stacks.map(s => (
+                                <span key={s} className="text-[8px] font-spacemono uppercase tracking-[0.2em] text-white/40 border border-white/10 px-3 py-1 rounded-full">
+                                    {s}
+                                </span>
+                            ))}
+                        </div>
+                        <div className="mt-6 flex">
+                            <span className="text-[10px] font-spacemono text-[#d4af37] border-b border-[#d4af37]/30 pb-1 uppercase tracking-widest">Voir le projet</span>
+                        </div>
+                    </div>
 
                     {/* Abstract decoration element per card */}
                     <div className={`absolute -right-4 top-1/2 -translate-y-1/2 w-[1px] h-1/2 bg-gradient-to-b from-transparent via-[#d4af37]/20 to-transparent hidden lg:block`} />

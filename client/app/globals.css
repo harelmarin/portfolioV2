@@ -50,21 +50,21 @@
 
 /* Custom fonts and utilities */
 .text-outline {
-  -webkit-text-stroke: 1px rgba(245, 245, 240, 0.3);
+  -webkit-text-stroke: 1px rgba(245, 245, 240, 0.15);
   color: transparent;
 }
 
 .bg-grid {
-  background-size: 50px 50px;
+  background-size: 80px 80px;
   background-image:
-    linear-gradient(to right, rgba(212, 175, 55, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(212, 175, 55, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(212, 175, 55, 0.02) 1px, transparent 1px);
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(212, 175, 55, 0.1);
+  background: rgba(255, 255, 255, 0.015);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .perspective-1000 {

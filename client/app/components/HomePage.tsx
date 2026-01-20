@@ -137,16 +137,35 @@ const Home = () => {
             <p className="text-[#e8e5df]/40 font-spacemono text-lg md:text-xl max-w-3xl mx-auto mb-20 tracking-wider">
               ACTUELLEMENT À LA RECHERCHE D'UNE OPPORTUNITÉ POUR 2026. DISCUTONS DE NOTRE FUTURE COLLABORATION.
             </p>
-            <div className="flex justify-center flex-col md:flex-row gap-8 items-center">
-              <motion.a
-                whileHover={{ scale: 1.1, backgroundColor: '#fff', color: '#000' }}
-                href="mailto:marinh1812@gmail.com"
-                className="px-10 md:px-20 py-6 md:py-8 border border-white/20 text-white font-integral text-lg md:text-xl uppercase tracking-[0.2em] rounded-full transition-all duration-500 hover:border-white shadow-[0_0_50_px_rgba(255,255,255,0.05)]"
+            <div className="flex justify-center flex-col md:flex-row gap-12 items-center">
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText('marinh1812@gmail.com');
+                  const btn = document.getElementById('copy-email-btn');
+                  if (btn) {
+                    const originalText = btn.innerText;
+                    btn.innerText = 'Email copié !';
+                    btn.style.color = '#d4af37';
+                    setTimeout(() => {
+                      btn.innerText = originalText;
+                      btn.style.color = 'white';
+                    }, 2000);
+                  }
+                }}
+                className="group relative px-12 py-6 border border-white/10 text-white font-spacemono text-sm uppercase tracking-[0.2em] transition-all duration-500 overflow-hidden cursor-pointer"
               >
-                Parlons-en
-              </motion.a>
-              <div className="font-spacemono text-[#d4af37] text-sm animate-pulse tracking-widest">
-                DISPONIBLE POUR ALTERNANCE // 2026
+                <span id="copy-email-btn" className="relative z-10 transition-colors duration-300">Copier mon email</span>
+                <motion.div
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: 0 }}
+                  className="absolute inset-0 bg-[#d4af37] -z-0 opacity-10"
+                />
+              </button>
+              <div className="flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full bg-[#d4af37] animate-pulse" />
+                <span className="font-spacemono text-white/40 text-[10px] tracking-[0.3em] uppercase">
+                  Alternance 2026
+                </span>
               </div>
             </div>
           </motion.div>
