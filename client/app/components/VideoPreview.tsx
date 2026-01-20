@@ -79,8 +79,8 @@ const VideoPreview = ({ src, title, poster }: VideoPreviewProps) => {
     }
   }, [hovered, isTouchDevice]);
 
-  if (isTouchDevice) {
-    // Sur mobile/tactile: afficher l'image générée (ou poster fourni), sinon fond noir
+  if (isTouchDevice || !src) {
+    // Sur mobile/tactile ou si pas de vidéo: afficher l'image générée (ou poster fourni), sinon fond noir
     const resolvedPoster = generatedPoster || poster;
     return (
       <div className="absolute inset-0 w-full h-full" tabIndex={-1} style={{ zIndex: 1 }}>
@@ -94,7 +94,7 @@ const VideoPreview = ({ src, title, poster }: VideoPreviewProps) => {
           />
         ) : (
           <div className="w-full h-full bg-black flex items-center justify-center" aria-label={title}>
-            <div className="text-[#d4af37]/30 text-xs uppercase tracking-wide">Video</div>
+            <div className="text-[#d4af37]/30 text-xs uppercase tracking-wide">{src ? 'Video' : 'Image'}</div>
           </div>
         )}
       </div>

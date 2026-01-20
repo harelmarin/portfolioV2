@@ -16,28 +16,29 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
         offset: ["start end", "end start"]
     });
 
-    // More subtle parallax
-    const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-    // Even items are left, odd are right, every 3rd is centered/wide
-    const layoutClass = index % 3 === 0
-        ? 'md:col-span-12 lg:col-span-10 lg:col-start-2'
-        : index % 2 === 0
-            ? 'md:col-span-6 lg:col-span-12' // Re-thought grouping below
-            : 'md:col-span-6 lg:col-span-12';
-
-    // Better approach: use a mapping for index to col-span to ensure it looks CURATED
+    // "Duo de Choc": Kickr is the massive anchor, CorsicAroma is the elegant companion
     const layouts = [
-        'md:col-span-12 lg:col-span-10 lg:col-start-2 mb-16', // Wide
-        'md:col-span-6 lg:col-span-5 lg:col-start-1 mb-12 md:translate-y-20', // Left half
-        'md:col-span-6 lg:col-span-5 lg:col-start-8 mb-12', // Right half
-        'md:col-span-12 lg:col-span-8 lg:col-start-3 mb-16', // Medium wide centered
-        'md:col-span-6 lg:col-span-5 lg:col-start-2 mb-12 md:translate-y-[-40px]', // Offset left
+        'md:col-span-12 lg:col-span-10 lg:col-start-2 mb-40', // Kickr: Massive impact
+        'md:col-span-12 lg:col-span-8 lg:col-start-3 mb-20',   // CorsicAroma: Elegant, slightly narrowed to focus the gaze
     ];
 
     const currentLayout = layouts[index % layouts.length];
-    const height = index % 3 === 0 ? 'h-[500px] md:h-[700px]' : 'h-[400px] md:h-[550px]';
+
+    // Custom parallax intensity per project
+    const parallaxRange = index === 0 ? [80, -80] : [40, -40];
+    const y = useTransform(scrollYProgress, [0, 1], parallaxRange);
+
+    const height = index === 0 ? 'h-[600px] md:h-[800px]' : 'h-[500px] md:h-[700px]';
+
+    const handleProjectClick = () => {
+        if (project.link) {
+            window.open(project.link, '_blank');
+        } else {
+            setSelectedProject(project);
+        }
+    };
 
     return (
         <>
@@ -45,7 +46,7 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
                 ref={container}
                 style={{ y }}
                 className={`${currentLayout} relative group cursor-pointer z-10`}
-                onClick={() => setSelectedProject(project)}
+                onClick={handleProjectClick}
             >
                 <div className="relative">
                     {/* Number indicator */}

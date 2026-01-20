@@ -76,8 +76,15 @@ const ModernHero = () => {
                             {/* Corner accent */}
                             <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#d4af37] rounded-tl-xl" />
 
-                            <div className="font-spacemono text-[#d4af37] text-xs mb-6 tracking-[0.3em] uppercase">
-                // Portfolio 26'
+                            <div className="font-spacemono text-[#d4af37] text-xs mb-2 tracking-[0.3em] uppercase">
+                                // Portfolio 26'
+                            </div>
+                            <div className="flex items-center gap-2 mb-6">
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4af37] opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d4af37]"></span>
+                                </span>
+                                <span className="font-spacemono text-[#d4af37] text-[10px] tracking-widest uppercase">Disponible Alternance 2026</span>
                             </div>
                             <div className="text-2xl md:text-3xl font-light mb-8 text-[#e8e5df] min-h-[1.5em] leading-tight">
                                 <Typewriter

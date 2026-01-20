@@ -12,9 +12,20 @@ export type Project = {
   image: string;
   video: string;
   stacks: string[];
+  link?: string;
 };
 
 const projects: Project[] = [
+  {
+    title: 'kickrhq.com',
+    category: 'Fullstack Web App',
+    description:
+      "Plateforme d'analyse et de statistiques footballistiques. Architecture robuste (Java Spring Boot / React) entièrement auto-hébergée sur VPS personnel via Docker pour un contrôle total de l'infrastructure.",
+    image: '/img/kickr.png',
+    video: '',
+    stacks: ['Java Spring Boot', 'React', 'Docker', 'VPS'],
+    link: 'https://kickrhq.com',
+  },
   {
     title: 'CorsicAroma',
     category: 'Web App / UX Design',
@@ -25,24 +36,6 @@ const projects: Project[] = [
     stacks: ['React', 'Tailwind', 'Supabase', 'Git'],
   },
 
-  {
-    title: 'Wethefoot',
-    category: 'E-commerce',
-    description: 'Boutique en ligne de vêtements de foot',
-    image: '',
-    video: '/img/wethefoot.mp4',
-    stacks: ['JavaScript', 'Git'],
-  },
-
-  {
-    title: 'U Buscu',
-    category: 'E-commerce / Artisanal',
-    description:
-      'Site e-commerce pour un producteur artisanal corse. Commande en ligne, fiches produits avec animations et backoffice simplifié.',
-    image: '',
-    video: '/img/Buscu.mp4',
-    stacks: ['Next', 'Tailwind', 'Git'],
-  },
 ];
 
 const experiences = [
@@ -72,19 +65,6 @@ const experiences = [
       'Modélisation base relationnelle sous Supabase',
       'Maquettes et parcours utilisateur (Figma)',
       'Questionnaire dynamique avec recommandations',
-    ],
-  },
-  {
-    title: 'Stage — Site vitrine',
-    company: 'U Buscu',
-    period: '2024',
-    location: 'Sari-d’Orcino, Corse',
-    stack: ['HTML', 'CSS', 'JavaScript'],
-    description: `Création du site vitrine pour présenter une fromagerie-artisan, de la prise de brief à la mise en ligne, avec travail sur le contenu, les maquettes et l’illustration, aux côtés de la fondatrice.`,
-    details: [
-      'Création d’un site vitrine (QR code sur emballages)',
-      'Rédaction de contenu, prises de visuels et mise en page',
-      'Itérations design après retours client',
     ],
   },
 ];
