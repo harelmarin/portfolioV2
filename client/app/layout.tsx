@@ -1,11 +1,13 @@
 import './globals.css';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import type { Metadata } from 'next';
+import { Archivo } from 'next/font/google';
 import localFont from 'next/font/local';
 
-const integral = localFont({
-  src: '../public/font/IntegralCF-Bold.ttf',
-  variable: '--font-integral',
+const archivo = Archivo({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-archivo',
   display: 'swap',
 });
 
@@ -179,7 +181,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${integral.variable} ${paralucent.variable} ${spaceMono.variable} bg-[#050505] text-[#f5f5f0] font-sans antialiased overflow-x-hidden`}>
+      <body className={`${archivo.variable} ${paralucent.variable} ${spaceMono.variable} bg-[#050505] text-[#f5f5f0] font-sans antialiased overflow-x-hidden`}>
         {children}
         <SpeedInsights />
       </body>

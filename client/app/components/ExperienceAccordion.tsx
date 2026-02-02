@@ -38,7 +38,7 @@ const ExperienceAccordion = ({ experiences }: ExperienceAccordionProps) => {
                 <span className="text-[10px] sm:text-xs text-[#e8e5df]/60 mb-1 sm:mb-2 tracking-[0.1em] uppercase font-light">
                   {exp.period} • {exp.location}
                 </span>
-                <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-integral text-[#f5f5f0] font-bold tracking-[0.05em] mb-2 sm:mb-3">
+                <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-archivo text-[#f5f5f0] font-bold tracking-[0.05em] mb-2 sm:mb-3">
                   {exp.title}{' '}
                   <span className="font-normal text-[#d4af37]/80">
                     — {exp.company}

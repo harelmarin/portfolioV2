@@ -92,7 +92,7 @@ const Home = () => {
                 <div className="w-16 h-[1px] bg-[#d4af37]" />
                 <span className="font-spacemono text-[#d4af37] text-xs tracking-[0.5em] uppercase">// RÉALISATIONS</span>
               </motion.div>
-              <h2 className="font-integral text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-[0.85]">
+              <h2 className="font-archivo text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-[0.85]">
                 MES <span className="text-outline">PROJETS</span>
               </h2>
             </div>
@@ -117,7 +117,7 @@ const Home = () => {
               <span className="font-spacemono text-[#d4af37] text-xs tracking-[0.5em] uppercase">// CURRICULUM</span>
               <div className="w-16 h-[1px] bg-[#d4af37]" />
             </motion.div>
-            <h2 className="font-integral text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-[0.85]">
+            <h2 className="font-archivo text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-[0.85]">
               LE <span className="text-outline">PARCOURS</span>
             </h2>
           </div>
@@ -131,7 +131,7 @@ const Home = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             className="relative z-10"
           >
-            <h2 className="font-integral text-5xl md:text-7xl lg:text-9xl mb-12 tracking-tighter leading-none">
+            <h2 className="font-archivo text-5xl md:text-7xl lg:text-9xl mb-12 tracking-tighter leading-none">
               UNE <span className="text-outline">ALTERNANCE ?</span>
             </h2>
             <p className="text-[#e8e5df]/40 font-spacemono text-lg md:text-xl max-w-3xl mx-auto mb-20 tracking-wider">
@@ -172,7 +172,7 @@ const Home = () => {
 
           {/* Background Text Deco */}
           <div className="absolute inset-0 flex items-center justify-center opacity-[0.02] -z-10 select-none pointer-events-none">
-            <span className="font-integral text-[30vw]">COLLAB</span>
+            <span className="font-archivo text-[30vw]">COLLAB</span>
           </div>
         </section>
       </main>
@@ -186,7 +186,7 @@ const Home = () => {
             <a href="https://github.com/harelmarin" target="_blank" className="font-spacemono text-[10px] text-white/30 hover:text-[#d4af37] transition-colors uppercase tracking-[0.5em]">GitHub</a>
           </div>
         </div>
-        <div className="font-integral text-2xl text-white/10 tracking-widest uppercase">
+        <div className="font-archivo text-2xl text-white/10 tracking-widest uppercase">
           MARIN HAREL
         </div>
       </footer>

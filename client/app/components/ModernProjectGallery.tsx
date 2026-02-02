@@ -73,7 +73,7 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
                             <div className="font-spacemono text-[#d4af37]/60 text-[10px] uppercase tracking-[0.5em] mb-4">
                                 {project.category}
                             </div>
-                            <h3 className="font-integral text-3xl md:text-5xl lg:text-6xl mb-6 tracking-tight group-hover:text-[#d4af37] transition-colors duration-500">
+                            <h3 className="font-archivo text-3xl md:text-5xl lg:text-6xl mb-6 tracking-tight group-hover:text-[#d4af37] transition-colors duration-500">
                                 {project.title}
                             </h3>
                             <div className="flex flex-wrap gap-3 opacity-40 group-hover:opacity-100 transition-opacity duration-700">
@@ -91,7 +91,7 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
                         <div className="font-spacemono text-[#d4af37]/80 text-[10px] uppercase tracking-[0.5em] mb-2">
                             {project.category}
                         </div>
-                        <h3 className="font-integral text-3xl mb-4 tracking-tight">
+                        <h3 className="font-archivo text-3xl mb-4 tracking-tight">
                             {project.title}
                         </h3>
                         <div className="flex flex-wrap gap-2">

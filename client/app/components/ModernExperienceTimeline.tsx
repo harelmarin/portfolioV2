@@ -33,7 +33,7 @@ const ExperienceItem = ({ exp, index }: { exp: Experience, index: number }) => {
             className={`relative flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-10 md:gap-20 mb-16 md:mb-24 group`}
         >
             {/* Background Big Year */}
-            <div className={`absolute -top-40 ${index % 2 === 0 ? '-left-20' : '-right-20'} font-integral text-[20vw] text-outline opacity-[0.03] select-none pointer-events-none`}>
+            <div className={`absolute -top-40 ${index % 2 === 0 ? '-left-20' : '-right-20'} font-archivo text-[20vw] text-outline opacity-[0.03] select-none pointer-events-none`}>
                 {exp.period.split('—')[0].trim()}
             </div>
 
@@ -53,7 +53,7 @@ const ExperienceItem = ({ exp, index }: { exp: Experience, index: number }) => {
                     {exp.period} // {index + 1}
                 </div>
 
-                <h3 className="font-integral text-4xl md:text-6xl mb-4 tracking-tighter text-white">
+                <h3 className="font-archivo text-4xl md:text-6xl mb-4 tracking-tighter text-white">
                     {exp.title}
                 </h3>
 

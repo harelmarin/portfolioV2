@@ -23,7 +23,7 @@ const ModernHero = () => {
                 style={{ y: y2, opacity: opacity.get() * 0.015 }}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none z-0"
             >
-                <h2 className="font-integral text-[15vw] md:text-[18vw] leading-none text-outline uppercase tracking-[0.1em]">
+                <h2 className="font-archivo text-[15vw] md:text-[18vw] leading-none text-outline uppercase tracking-[0.1em]">
                     CRÉATIF
                 </h2>
             </motion.div>
@@ -39,7 +39,7 @@ const ModernHero = () => {
                             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                             style={{ y: y1 }}
                         >
-                            <h1 className="font-integral text-5xl sm:text-6xl md:text-7xl lg:text-[8.5rem] leading-[0.8] tracking-[-0.04em] mix-blend-difference">
+                            <h1 className="font-archivo text-5xl sm:text-6xl md:text-7xl lg:text-[8.5rem] leading-[0.8] tracking-[-0.04em] mix-blend-difference">
                                 MARIN
                             </h1>
                         </motion.div>
@@ -51,7 +51,7 @@ const ModernHero = () => {
                             style={{ y: y2 }}
                             className="md:ml-24 mt-0"
                         >
-                            <h1 className="font-integral text-5xl sm:text-6xl md:text-7xl lg:text-[8.5rem] leading-[0.8] tracking-[-0.04em] text-[#d4af37]">
+                            <h1 className="font-archivo text-5xl sm:text-6xl md:text-7xl lg:text-[8.5rem] leading-[0.8] tracking-[-0.04em] text-[#d4af37]">
                                 HAREL
                             </h1>
                         </motion.div>

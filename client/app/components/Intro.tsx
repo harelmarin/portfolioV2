@@ -14,7 +14,7 @@ const Intro = ({ onComplete, name = 'MARIN HAREL' }: IntroProps) => {
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-integral text-6xl md:text-9xl font-bold tracking-tighter"
+          className="font-archivo text-6xl md:text-9xl font-bold tracking-tighter"
         >
           {name}
         </motion.h1>
@@ -33,7 +33,7 @@ const Intro = ({ onComplete, name = 'MARIN HAREL' }: IntroProps) => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.1 }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-integral text-[15vw] md:text-[20rem] text-outline whitespace-nowrap pointer-events-none select-none -z-10"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-archivo text-[15vw] md:text-[20rem] text-outline whitespace-nowrap pointer-events-none select-none -z-10"
         >
           BIENVENUE
         </motion.div>
