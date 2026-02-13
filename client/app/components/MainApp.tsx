@@ -4,7 +4,6 @@ import Intro from './Intro';
 import Home from './HomePage';
 import { AnimatePresence, motion } from 'framer-motion';
 import SmoothScroll from './SmoothScroll';
-import CustomCursor from './CustomCursor';
 
 export default function MainApp() {
   const [introComplete, setIntroComplete] = useState(false);
@@ -14,19 +13,19 @@ export default function MainApp() {
       {!introComplete ? (
         <motion.div
           key="intro"
-          exit={{ opacity: 0, y: -20, scale: 1.1 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          exit={{ opacity: 0, y: -50, rotateX: 10, scale: 0.95 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="fixed inset-0 z-[100] bg-white transform-gpu origin-top"
         >
           <Intro name="MARIN HAREL" onComplete={() => setIntroComplete(true)} />
         </motion.div>
       ) : (
         <SmoothScroll>
-          <CustomCursor />
           <motion.div
             key="home"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5 }}
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
           >
             <Home />
           </motion.div>

@@ -33,16 +33,16 @@ const CustomCursor = () => {
 
     return (
         <motion.div
-            className="fixed top-0 left-0 w-8 h-8 rounded-full border border-[#d4af37] pointer-events-none z-[9999] hidden md:block"
+            className="fixed top-0 left-0 w-8 h-8 rounded-full border border-black/10 pointer-events-none z-[9999] hidden md:block"
             style={{
                 x: cursorX,
                 y: cursorY,
-                scale: isHovered ? 2.5 : 1,
-                backgroundColor: isHovered ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+                scale: isHovered ? 2 : 1,
+                backgroundColor: isHovered ? 'rgba(0, 0, 0, 0.03)' : 'transparent',
             }}
             transition={{ scale: { duration: 0.3 } }}
         >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-[#d4af37] rounded-full" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-black/40 rounded-full" />
         </motion.div>
     );
 };

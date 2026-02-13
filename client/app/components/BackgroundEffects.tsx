@@ -3,40 +3,39 @@ import { motion } from 'framer-motion';
 
 const BackgroundEffects = () => {
     return (
-        <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-            {/* Grid */}
-            <div className="absolute inset-0 bg-grid opacity-20" />
+        <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none bg-white">
+            {/* Very subtle Grid */}
+            <div className="absolute inset-0 bg-grid opacity-30" />
 
-            {/* Blobs */}
+            {/* Subtle Blue Blobs (Inspired by the intro glow) */}
             <motion.div
                 animate={{
-                    scale: [1, 1.2, 1],
-                    x: [0, 100, 0],
-                    y: [0, 50, 0],
+                    scale: [1, 1.1, 1],
+                    opacity: [0.3, 0.5, 0.3],
+                }}
+                transition={{
+                    duration: 15,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                }}
+                className="absolute -top-1/4 -left-1/4 w-[60vw] h-[60vw] bg-blue-50 rounded-full blur-[120px] will-change-transform"
+            />
+
+            <motion.div
+                animate={{
+                    scale: [1.1, 1, 1.1],
+                    opacity: [0.2, 0.4, 0.2],
                 }}
                 transition={{
                     duration: 20,
                     repeat: Infinity,
-                    ease: "linear",
+                    ease: "easeInOut",
                 }}
-                className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-[#d4af37]/10 rounded-full blur-[120px] will-change-transform"
-            />
-            <motion.div
-                animate={{
-                    scale: [1.2, 1, 1.2],
-                    x: [0, -100, 0],
-                    y: [0, -50, 0],
-                }}
-                transition={{
-                    duration: 25,
-                    repeat: Infinity,
-                    ease: "linear",
-                }}
-                className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-[#d4af37]/5 rounded-full blur-[150px] will-change-transform"
+                className="absolute -bottom-1/4 -right-1/4 w-[50vw] h-[50vw] bg-gray-50 rounded-full blur-[150px] will-change-transform"
             />
 
-            {/* Vignette */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(5,5,5,0.8)_100%)]" />
+            {/* Light Vignette */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(255,255,255,0.2)_100%)]" />
         </div>
     );
 };
