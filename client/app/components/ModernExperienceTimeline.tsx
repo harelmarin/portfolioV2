@@ -63,7 +63,7 @@ const ExperienceItem = ({ exp }: { exp: Experience }) => {
 
 const ModernExperienceTimeline = ({ experiences }: Props) => {
     return (
-        <div className="py-10">
+        <div>
             {experiences.map((exp) => (
                 <ExperienceItem key={exp.company} exp={exp} />
             ))}

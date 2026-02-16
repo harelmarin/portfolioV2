@@ -1,6 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import ProjectModal from './ProjectModal';
 import VideoPreview from './VideoPreview';
 import type { Project } from './HomePage';
 
@@ -13,17 +12,13 @@ const ProjectGallery = ({ projects }: ProjectGalleryProps) => {
 
   return (
     <>
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12 max-w-7xl mx-auto">
         {projects.map((project, idx) => (
           <div
             key={idx}
             className="group relative border border-[#d4af37]/10 hover:border-[#d4af37]/30 bg-[#0f0f0f] transition-all duration-700 overflow-hidden cursor-pointer"
             onClick={() => setSelectedProject(project)}
-            style={{ 
+            style={{
               minHeight: 'auto',
               transition: 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1)'
             }}
