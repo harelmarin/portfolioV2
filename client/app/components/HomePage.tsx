@@ -30,7 +30,7 @@ const projects: Project[] = [
     title: 'kickrhq.com',
     category: 'Application Web Fullstack',
     description:
-      "Plateforme complète d'analyse footballistique. KickrHQ agrège, analyse et visualise des données de matchs en temps réel. Architecture robuste Spring Boot / React entièrement auto-hébergée sur VPS personnel.",
+      "Plateforme sociale de notation footballistique. KickrHQ agrège des données de matchs pour permettre aux utilisateurs de noter leurs rencontres et suivre l'activité de leurs proches. Architecture Spring Boot / React auto-hébergée sur VPS personnel.",
     detailedDescription:
       "Plateforme complète dédiée aux passionnés de football et de statistiques. KickrHQ agrège, analyse et visualise des données de matchs en temps réel. Développée avec une approche 'Clean Architecture', l'application garantit performance et maintenabilité. Le backend Spring Boot gère des millions d'événements, tandis que le frontend React offre une expérience utilisateur fluide et interactive. L'infrastructure, entièrement conteneurisée et orchestrée sur un VPS privé, démontre une maîtrise complète du cycle de vie logiciel, du code au déploiement.",
     image: '/img/kickr.png',
@@ -48,7 +48,7 @@ const projects: Project[] = [
     title: 'CorsicAroma',
     category: 'Application Web / Design UX',
     description:
-      "Une immersion numérique dans l'univers des senteurs corses. Interface web de recommandation d'huiles essentielles avec questionnaire intelligent et design émotionnel sous Supabase.",
+      "Application web de recommandation personnalisée d'huiles essentielles corses. Un système basé sur un questionnaire intelligent exploitant la puissance de Supabase pour des conseils sur mesure.",
     detailedDescription:
       "Une immersion numérique dans l'univers des senteurs corses. Ce projet allie design émotionnel et efficacité technique pour guider l'utilisateur vers l'huile essentielle idéale. Au-delà du catalogue e-commerce, l'application propose un questionnaire intelligent qui cerne les besoins de l'utilisateur pour formuler des recommandations personnalisées. L'interface, minimaliste et élégante, met en valeur l'identité visuelle de la marque, tandis que Supabase assure une gestion des données temps réel performante et sécurisée.",
     image: '',
