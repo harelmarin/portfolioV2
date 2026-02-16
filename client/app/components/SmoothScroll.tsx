@@ -2,6 +2,12 @@
 import { useEffect } from 'react';
 import Lenis from 'lenis';
 
+declare global {
+    interface Window {
+        lenis: Lenis | undefined;
+    }
+}
+
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         const lenis = new Lenis({
@@ -14,6 +20,8 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
             touchMultiplier: 2,
             infinite: false,
         });
+
+        window.lenis = lenis;
 
         // Global handle for anchor links
         const handleAnchorClick = (e: MouseEvent) => {
@@ -40,6 +48,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
         return () => {
             window.removeEventListener('click', handleAnchorClick);
             lenis.destroy();
+            window.lenis = undefined;
         };
     }, []);
 

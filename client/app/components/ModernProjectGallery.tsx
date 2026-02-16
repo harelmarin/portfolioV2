@@ -13,16 +13,34 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
     const [showVideo, setShowVideo] = useState(false);
 
     useEffect(() => {
+        const blockScroll = () => {
+            if (showVideo) {
+                window.lenis?.stop();
+                document.body.style.overflow = 'hidden';
+                document.documentElement.style.overflow = 'hidden';
+                document.body.style.overscrollBehavior = 'none';
+            } else {
+                window.lenis?.start();
+                document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
+                document.body.style.overscrollBehavior = '';
+            }
+        };
+
+        blockScroll();
+
+        // Secondary attempt in case lenis initialized later
+        let timeout: NodeJS.Timeout;
         if (showVideo) {
-            document.body.style.overflow = 'hidden';
-            document.documentElement.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-            document.documentElement.style.overflow = '';
+            timeout = setTimeout(blockScroll, 100);
         }
+
         return () => {
+            clearTimeout(timeout);
+            window.lenis?.start();
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
+            document.body.style.overscrollBehavior = '';
         };
     }, [showVideo]);
 
@@ -102,8 +120,9 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 md:p-10"
+                        className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 md:p-10 pointer-events-auto"
                         onClick={() => setShowVideo(false)}
+                        data-lenis-prevent
                     >
                         <motion.div
                             initial={{ scale: 0.9, opacity: 0 }}
