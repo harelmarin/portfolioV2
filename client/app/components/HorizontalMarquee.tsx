@@ -1,24 +1,52 @@
 'use client';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 
-const HorizontalMarquee = ({ text, speed = 20, direction = 1 }: { text: string, speed?: number, direction?: 1 | -1 }) => {
-    const containerRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start end", "end start"]
-    });
-
-    // Use a large negative offset to ensure the marquee is already full and flowing from both sides
-    const xBase = -3000;
-    const movement = useTransform(scrollYProgress, [0, 1], [xBase, xBase + (direction * 1000)]);
+const HorizontalMarquee = ({
+    text,
+    speed = 30,
+    direction = 1,
+    className = ""
+}: {
+    text: string,
+    speed?: number,
+    direction?: 1 | -1,
+    className?: string
+}) => {
+    const initialX = direction === 1 ? '0%' : '-50%';
+    const animateX = direction === 1 ? '-50%' : '0%';
 
     return (
-        <div ref={containerRef} className="py-20 overflow-hidden whitespace-nowrap border-y border-white/5 bg-white/[0.02] relative">
-            <motion.div style={{ x: movement }} className="flex">
-                {[...Array(20)].map((_, i) => (
-                    <span key={i} className="font-archivo text-3xl md:text-5xl text-outline px-8 uppercase transition-colors hover:text-[#d4af37] tracking-[0.2em] flex items-center">
-                        {text} <span className="text-[#d4af37]/50 ml-10 select-none">•</span>
+        <div className={`py-6 md:py-10 overflow-hidden whitespace-nowrap border-y border-black/[0.03] bg-black/[0.01] relative flex ${className}`}>
+            <motion.div
+                className="flex flex-row flex-nowrap shrink-0"
+                initial={{ x: initialX }}
+                animate={{ x: animateX }}
+                transition={{
+                    duration: speed,
+                    repeat: Infinity,
+                    ease: "linear",
+                }}
+            >
+                {/* We repeat the content to ensure seamless loop */}
+                {[...Array(10)].map((_, i) => (
+                    <span key={i} aria-hidden="true" className="font-archivo text-4xl md:text-6xl lg:text-7xl text-black font-black px-4 md:px-10 uppercase tracking-tighter flex items-center select-none">
+                        {text} <span className="text-black/10 mx-6 md:mx-12">•</span>
+                    </span>
+                ))}
+            </motion.div>
+            <motion.div
+                className="flex flex-row flex-nowrap shrink-0"
+                initial={{ x: initialX }}
+                animate={{ x: animateX }}
+                transition={{
+                    duration: speed,
+                    repeat: Infinity,
+                    ease: "linear",
+                }}
+            >
+                {[...Array(10)].map((_, i) => (
+                    <span key={i} aria-hidden="true" className="font-archivo text-4xl md:text-6xl lg:text-7xl text-outline px-4 md:px-10 uppercase tracking-tighter flex items-center select-none">
+                        {text} <span className="text-black/5 mx-6 md:mx-12">•</span>
                     </span>
                 ))}
             </motion.div>

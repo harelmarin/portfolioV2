@@ -1,5 +1,5 @@
-'use client';
 import React from 'react';
+import Image from 'next/image';
 
 interface VideoPreviewProps {
   src: string;
@@ -80,21 +80,21 @@ const VideoPreview = ({ src, title, poster }: VideoPreviewProps) => {
   }, [hovered, isTouchDevice]);
 
   if (isTouchDevice || !src) {
-    // Sur mobile/tactile ou si pas de vidéo: afficher l'image générée (ou poster fourni), sinon fond noir
     const resolvedPoster = generatedPoster || poster;
     return (
-      <div className="absolute inset-0 w-full h-full" tabIndex={-1} style={{ zIndex: 1 }}>
+      <div className="absolute inset-0 w-full h-full" style={{ zIndex: 1 }}>
         {resolvedPoster ? (
-          <img
+          <Image
             src={resolvedPoster}
-            alt={title}
-            className="object-cover w-full h-full will-change-transform"
-            loading="lazy"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'translateZ(0)' }}
+            alt={`Aperçu du projet ${title}`}
+            fill
+            className="object-cover will-change-transform"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            priority={false}
           />
         ) : (
-          <div className="w-full h-full bg-black flex items-center justify-center" aria-label={title}>
-            <div className="text-[#d4af37]/30 text-xs uppercase tracking-wide">{src ? 'Video' : 'Image'}</div>
+          <div className="w-full h-full bg-black flex items-center justify-center" aria-label={`Média pour ${title}`}>
+            <div className="text-white/40 text-[10px] uppercase font-bold tracking-widest">{src ? 'Video Preview' : 'Image'}</div>
           </div>
         )}
       </div>

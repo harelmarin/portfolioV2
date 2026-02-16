@@ -16,85 +16,56 @@ interface Props {
     experiences: Experience[];
 }
 
-const ExperienceItem = ({ exp, index }: { exp: Experience, index: number }) => {
-    const ref = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ["start end", "end start"]
-    });
-
-    const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 0.9]);
-    const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.3, 1, 1, 0.3]);
-
+const ExperienceItem = ({ exp }: { exp: Experience }) => {
     return (
-        <motion.div
-            ref={ref}
-            style={{ scale, opacity }}
-            className={`relative flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-10 md:gap-20 mb-16 md:mb-24 group`}
-        >
-            {/* Background Big Year */}
-            <div className={`absolute -top-40 ${index % 2 === 0 ? '-left-20' : '-right-20'} font-archivo text-[20vw] text-outline opacity-[0.03] select-none pointer-events-none`}>
-                {exp.period.split('—')[0].trim()}
-            </div>
-
-            {/* Side Label (Vertical) */}
-            <div className="hidden lg:flex flex-col items-center gap-4">
-                <div className="w-[1px] h-20 bg-[#d4af37]/30" />
-                <span className="font-spacemono text-[10px] text-[#d4af37] rotate-180 [writing-mode:vertical-lr] tracking-[1em] uppercase">
-                    {exp.location}
+        <div className="flex flex-col md:flex-row gap-8 md:gap-16 mb-20 group">
+            <div className="md:w-32 flex-shrink-0">
+                <span className="font-spacemono text-[11px] text-black/60 uppercase tracking-widest font-bold">
+                    {exp.period}
                 </span>
             </div>
 
-            {/* Main Card */}
-            <div className="flex-1 glass p-10 md:p-16 rounded-[3rem] border-white/5 relative overflow-hidden group-hover:border-[#d4af37]/20 transition-colors duration-500">
-                <div className="absolute top-0 left-0 w-2 h-0 group-hover:h-full bg-[#d4af37] transition-all duration-700" />
-
-                <div className="font-spacemono text-[#d4af37] text-xs mb-8 tracking-[0.4em] uppercase">
-                    {exp.period} // {index + 1}
+            <div className="flex-1">
+                <div className="flex items-center gap-2 mb-4">
+                    <h3 className="font-archivo text-xl font-black text-black tracking-tight">
+                        {exp.title}
+                    </h3>
+                    <div className="h-[1px] w-4 bg-[#f4f4f5]" />
+                    <span className="text-[12px] font-bold text-blue-500">{exp.company}</span>
                 </div>
 
-                <h3 className="font-archivo text-4xl md:text-6xl mb-4 tracking-tighter text-white">
-                    {exp.title}
-                </h3>
-
-                <div className="text-xl md:text-2xl font-light text-[#d4af37]/80 mb-10 italic">
-                    @ {exp.company}
-                </div>
-
-                <p className="text-[#e8e5df]/60 text-lg leading-relaxed mb-8 max-w-2xl">
+                <p className="text-black/60 text-sm leading-relaxed mb-6 font-medium max-w-xl">
                     {exp.description}
                 </p>
 
-                {exp.details && exp.details.length > 0 && (
-                    <ul className="space-y-4 mb-12 max-w-2xl">
-                        {exp.details.map((detail, i) => (
-                            <li key={i} className="flex items-start gap-4 group/item">
-                                <div className="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#d4af37]/40 group-hover/item:bg-[#d4af37] transition-colors" />
-                                <span className="text-[#e8e5df]/70 text-base leading-relaxed">
-                                    {detail}
-                                </span>
-                            </li>
-                        ))}
-                    </ul>
-                )}
+                <ul className="space-y-3 mb-8">
+                    {exp.details.map((detail, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                            <div className="mt-2 w-1.5 h-1.5 rounded-full bg-black/40 flex-shrink-0" />
+                            <span className="text-black/60 text-[13px] leading-relaxed font-medium">
+                                {detail}
+                            </span>
+                        </li>
+                    ))}
+                </ul>
 
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-2">
                     {exp.stack.map(s => (
-                        <span key={s} className="px-5 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-spacemono tracking-widest text-[#d4af37] uppercase">
+                        <span key={s} className="text-[10px] font-bold text-black/70 px-2 py-1 rounded-md bg-[#f4f4f5] border border-black/10 uppercase tracking-widest">
                             {s}
                         </span>
                     ))}
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 };
 
 const ModernExperienceTimeline = ({ experiences }: Props) => {
     return (
-        <div className="max-w-7xl mx-auto py-10 px-6 overflow-x-hidden">
-            {experiences.map((exp, index) => (
-                <ExperienceItem key={exp.company} exp={exp} index={index} />
+        <div>
+            {experiences.map((exp) => (
+                <ExperienceItem key={exp.company} exp={exp} />
             ))}
         </div>
     );

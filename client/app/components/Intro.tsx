@@ -1,5 +1,6 @@
 'use client';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 interface IntroProps {
   onComplete: () => void;
@@ -7,40 +8,56 @@ interface IntroProps {
 }
 
 const Intro = ({ onComplete, name = 'MARIN HAREL' }: IntroProps) => {
+  const characters = name.split('');
+  const [glowIntensity, setGlowIntensity] = useState(0);
+
+  useEffect(() => {
+    // Gradual glow intensity towards the end
+    const timeout = setTimeout(() => {
+      setGlowIntensity(1);
+    }, 1000); // Faster glow
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#050505] overflow-hidden">
-      <div className="relative">
-        <motion.h1
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-archivo text-6xl md:text-9xl font-bold tracking-tighter"
-        >
-          {name}
-        </motion.h1>
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#fcfcfc] overflow-hidden">
+      {/* Subtle Blue Inset Glow per Reference */}
+      <motion.div
+        animate={{
+          boxShadow: `inset 0 0 ${60 + glowIntensity * 100}px rgba(59, 130, 246, ${0.03 + glowIntensity * 0.04})`
+        }}
+        transition={{ duration: 1.5, ease: "easeInOut" }}
+        className="absolute inset-0 pointer-events-none"
+      />
 
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          onAnimationComplete={() => {
-            setTimeout(onComplete, 1000);
-          }}
-          className="h-[2px] w-full bg-[#d4af37] mt-4 origin-left"
-        />
-
-        {/* Decorative elements */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.1 }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-archivo text-[15vw] md:text-[20rem] text-outline whitespace-nowrap pointer-events-none select-none -z-10"
-        >
-          BIENVENUE
-        </motion.div>
+      <div className="relative z-10">
+        {/* Minimalist Character Reveal - Compact & Bold */}
+        <h1 className="flex font-archivo text-4xl md:text-6xl font-black tracking-tighter text-black uppercase transform scale-y-110">
+          {characters.map((char, i) => (
+            <motion.span
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.5,
+                delay: i * 0.04, // Very fast writing speed
+                ease: [0.16, 1, 0.3, 1]
+              }}
+              onAnimationComplete={() => {
+                if (i === characters.length - 1) {
+                  // Reduced waiting time significantly
+                  setTimeout(onComplete, 500);
+                }
+              }}
+              className={char === ' ' ? 'mr-4' : ''}
+            >
+              {char}
+            </motion.span>
+          ))}
+        </h1>
       </div>
     </div>
   );
 };
 
 export default Intro;
-

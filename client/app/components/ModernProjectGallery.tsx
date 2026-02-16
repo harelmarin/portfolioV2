@@ -1,132 +1,174 @@
 'use client';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Project } from './HomePage';
 import VideoPreview from './VideoPreview';
-import ProjectModal from './ProjectModal';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 interface Props {
     projects: Project[];
 }
 
 const ProjectCard = ({ project, index }: { project: Project, index: number }) => {
-    const container = useRef(null);
+    const containerRef = useRef(null);
+    const [showVideo, setShowVideo] = useState(false);
+
     const { scrollYProgress } = useScroll({
-        target: container,
+        target: containerRef,
         offset: ["start end", "end start"]
     });
 
-    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+    const y = useTransform(scrollYProgress, [0, 1], [-30, 30]);
+    const smoothY = useSpring(y, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
-    // "Duo de Choc": Kickr is the massive anchor, CorsicAroma is the elegant companion
-    const layouts = [
-        'md:col-span-12 lg:col-span-10 lg:col-start-2 mb-40', // Kickr: Massive impact
-        'md:col-span-12 lg:col-span-8 lg:col-start-3 mb-20',   // CorsicAroma: Elegant, slightly narrowed to focus the gaze
-    ];
+    useEffect(() => {
+        const blockScroll = () => {
+            if (showVideo) {
+                window.lenis?.stop();
+                document.body.style.overflow = 'hidden';
+                document.documentElement.style.overflow = 'hidden';
+                document.body.style.overscrollBehavior = 'none';
+            } else {
+                window.lenis?.start();
+                document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
+                document.body.style.overscrollBehavior = '';
+            }
+        };
 
-    const currentLayout = layouts[index % layouts.length];
+        blockScroll();
 
-    // Custom parallax intensity per project
-    const parallaxRange = index === 0 ? [80, -80] : [40, -40];
-    const y = useTransform(scrollYProgress, [0, 1], parallaxRange);
+        // Secondary attempt in case lenis initialized later
+        let timeout: NodeJS.Timeout;
+        if (showVideo) {
+            timeout = setTimeout(blockScroll, 100);
+        }
 
-    const height = index === 0 ? 'h-[600px] md:h-[800px]' : 'h-[500px] md:h-[700px]';
+        return () => {
+            clearTimeout(timeout);
+            window.lenis?.start();
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
+            document.body.style.overscrollBehavior = '';
+        };
+    }, [showVideo]);
 
-    const handleProjectClick = () => {
+    const handleAction = () => {
         if (project.link) {
-            window.open(project.link, '_blank');
-        } else {
-            setSelectedProject(project);
+            const win = window.open(project.link, '_blank', 'noopener,noreferrer');
+            if (win) win.opener = null;
+        } else if (project.video) {
+            setShowVideo(true);
         }
     };
 
     return (
         <>
             <motion.div
-                ref={container}
-                style={{ y }}
-                className={`${currentLayout} relative group cursor-pointer z-10`}
-                onClick={handleProjectClick}
+                ref={containerRef}
+                className="relative group cursor-none h-full focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-[1.5rem]"
+                onClick={handleAction}
+                role="button"
+                tabIndex={0}
+                aria-label={`Voir le projet ${project.title}`}
+                data-cursor="VOIR"
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleAction();
+                    }
+                }}
             >
-                <div className="relative">
-                    {/* Number indicator */}
-                    <div className="absolute -top-6 -left-6 z-20 font-spacemono text-[#d4af37] text-xs bg-[#050505] border border-white/10 px-3 py-1 rounded-full">
-                        0{index + 1}
+                <div className="relative h-full bg-white border border-[#e4e4e7] p-3 rounded-[1.5rem] transition-all duration-500 group-hover:shadow-[0_30px_60px_rgba(0,0,0,0.03)] group-hover:border-black/10 flex flex-col">
+                    <div className="relative w-full aspect-video overflow-hidden rounded-xl bg-[#f4f4f5] flex-shrink-0">
+                        <motion.div
+                            style={{ y: smoothY, scale: 1.15 }}
+                            className="w-full h-full"
+                        >
+                            <VideoPreview src={project.video} title={project.title} poster={project.image} />
+                        </motion.div>
+                        <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 md:flex hidden items-center justify-center pointer-events-none">
+                            {/* The cursor will now show the text */}
+                        </div>
                     </div>
 
-                    <motion.div
-                        className={`relative w-full ${height} overflow-hidden rounded-[2.5rem] bg-[#0c0c0c] border border-white/[0.03] transition-all duration-1000 group-hover:border-[#d4af37]/20 group-hover:shadow-[0_40px_80px_rgba(0,0,0,0.9)]`}
-                    >
-                        {/* Media */}
-                        <div className="absolute inset-0 z-0">
-                            <VideoPreview src={project.video} title={project.title} poster={project.image} />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/20 to-transparent opacity-80 md:block hidden" />
-                        </div>
-
-                        {/* Overlay on hover (Desktop only) */}
-                        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 md:flex hidden items-center justify-center backdrop-blur-[1px]">
-                            <span className="px-8 py-3 border border-[#d4af37]/40 text-[#d4af37] font-spacemono text-[10px] uppercase tracking-[0.4em] bg-black/40 backdrop-blur-md rounded-full transition-all duration-500 hover:bg-[#d4af37] hover:text-black hover:border-[#d4af37]">Découvrir</span>
-                        </div>
-
-                        {/* Desktop Text Info */}
-                        <div className="absolute inset-x-0 bottom-0 z-10 p-10 md:p-16 md:block hidden">
-                            <div className="font-spacemono text-[#d4af37]/60 text-[10px] uppercase tracking-[0.5em] mb-4">
+                    <div className="mt-6 px-2 pb-2 flex flex-col flex-grow">
+                        <div className="flex items-center justify-between mb-3">
+                            <span className="font-spacemono text-[9px] text-black/40 uppercase tracking-[0.2em] font-bold">
                                 {project.category}
-                            </div>
-                            <h3 className="font-archivo text-3xl md:text-5xl lg:text-6xl mb-6 tracking-tight group-hover:text-[#d4af37] transition-colors duration-500">
-                                {project.title}
-                            </h3>
-                            <div className="flex flex-wrap gap-3 opacity-40 group-hover:opacity-100 transition-opacity duration-700">
-                                {project.stacks.map(s => (
-                                    <span key={s} className="text-[9px] font-spacemono uppercase tracking-[0.3em] text-white/50 border border-white/5 px-3 py-1 rounded-full bg-white/5">
-                                        {s}
+                            </span>
+                            {project.isLive && (
+                                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-green-500/5 border border-green-500/10">
+                                    <span className="relative flex h-1 w-1">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-1 w-1 bg-green-500"></span>
                                     </span>
-                                ))}
-                            </div>
+                                    <span className="font-spacemono text-[8px] font-bold text-green-600 uppercase tracking-widest">Live</span>
+                                </div>
+                            )}
                         </div>
-                    </motion.div>
 
-                    {/* Mobile Text Info (Visible only on mobile, below the card) */}
-                    <div className="mt-8 px-4 md:hidden block">
-                        <div className="font-spacemono text-[#d4af37]/80 text-[10px] uppercase tracking-[0.5em] mb-2">
-                            {project.category}
-                        </div>
-                        <h3 className="font-archivo text-3xl mb-4 tracking-tight">
+                        <h3 className="font-archivo text-2xl md:text-3xl font-black text-black tracking-tighter mb-3 leading-tight">
                             {project.title}
                         </h3>
-                        <div className="flex flex-wrap gap-2">
+
+                        <p className="font-inter text-sm text-black/60 leading-relaxed mb-6 flex-grow">
+                            {project.description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-2 mt-auto">
                             {project.stacks.map(s => (
-                                <span key={s} className="text-[8px] font-spacemono uppercase tracking-[0.2em] text-white/40 border border-white/10 px-3 py-1 rounded-full">
+                                <span key={s} className="text-[11px] font-inter font-bold text-black/60 px-2.5 py-1 rounded-md bg-[#f4f4f5] border border-black/10">
                                     {s}
                                 </span>
                             ))}
                         </div>
-                        <div className="mt-6 flex">
-                            <span className="text-[10px] font-spacemono text-[#d4af37] border-b border-[#d4af37]/30 pb-1 uppercase tracking-widest">Voir le projet</span>
-                        </div>
                     </div>
-
-                    {/* Abstract decoration element per card */}
-                    <div className={`absolute -right-4 top-1/2 -translate-y-1/2 w-[1px] h-1/2 bg-gradient-to-b from-transparent via-[#d4af37]/20 to-transparent hidden lg:block`} />
                 </div>
             </motion.div>
 
-            <ProjectModal
-                project={selectedProject}
-                onClose={() => setSelectedProject(null)}
-            />
+            <AnimatePresence>
+                {showVideo && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 md:p-10 pointer-events-auto"
+                        onClick={() => setShowVideo(false)}
+                        data-lenis-prevent
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            className="relative w-full max-w-6xl aspect-video rounded-2xl overflow-hidden bg-black"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <video
+                                src={project.video}
+                                autoPlay
+                                controls
+                                className="w-full h-full object-contain"
+                            />
+                            <button
+                                onClick={() => setShowVideo(false)}
+                                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md flex items-center justify-center transition-colors group"
+                            >
+                                <div className="relative w-4 h-4">
+                                    <span className="absolute top-1/2 left-0 w-full h-[2px] bg-white rotate-45 -translate-y-1/2" />
+                                    <span className="absolute top-1/2 left-0 w-full h-[2px] bg-white -rotate-45 -translate-y-1/2" />
+                                </div>
+                            </button>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </>
     );
 };
 
 const ModernProjectGallery = ({ projects }: Props) => {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 py-10 relative px-4">
-            {/* Background vertical lines for the "curated" feel */}
-            <div className="absolute left-[8.33%] top-0 bottom-0 w-[1px] bg-white/[0.03] hidden lg:block" />
-            <div className="absolute left-[50%] top-0 bottom-0 w-[1px] bg-white/[0.03] hidden lg:block" />
-            <div className="absolute left-[91.66%] top-0 bottom-0 w-[1px] bg-white/[0.03] hidden lg:block" />
-
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
             {projects.map((project, index) => (
                 <ProjectCard key={project.title} project={project} index={index} />
             ))}
