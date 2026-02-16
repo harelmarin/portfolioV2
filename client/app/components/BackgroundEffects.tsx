@@ -7,31 +7,13 @@ const BackgroundEffects = () => {
             {/* Very subtle Grid */}
             <div className="absolute inset-0 bg-grid opacity-30" />
 
-            {/* Subtle Blue Blobs (Inspired by the intro glow) */}
-            <motion.div
-                animate={{
-                    scale: [1, 1.1, 1],
-                    opacity: [0.3, 0.5, 0.3],
-                }}
-                transition={{
-                    duration: 15,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                }}
-                className="absolute -top-1/4 -left-1/4 w-[60vw] h-[60vw] bg-blue-50 rounded-full blur-[120px] will-change-transform"
+            {/* Static Subtle Blue Blobs (Inspired by the intro glow) */}
+            <div
+                className="absolute -top-1/4 -left-1/4 w-[60vw] h-[60vw] bg-blue-50/40 rounded-full blur-[120px]"
             />
 
-            <motion.div
-                animate={{
-                    scale: [1.1, 1, 1.1],
-                    opacity: [0.2, 0.4, 0.2],
-                }}
-                transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                }}
-                className="absolute -bottom-1/4 -right-1/4 w-[50vw] h-[50vw] bg-gray-50 rounded-full blur-[150px] will-change-transform"
+            <div
+                className="absolute -bottom-1/4 -right-1/4 w-[50vw] h-[50vw] bg-gray-50/40 rounded-full blur-[150px]"
             />
 
             {/* Light Vignette */}

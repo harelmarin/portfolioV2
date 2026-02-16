@@ -142,10 +142,33 @@ const Home = () => {
               <div className="flex flex-wrap gap-4 items-center justify-center">
                 <ContactButton />
                 <a
+                  href="/cv.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2 px-8 py-3 bg-white border border-black/10 text-black rounded-full font-inter text-[13px] font-black transition-all hover:border-black hover:bg-black/5 active:scale-95"
+                >
+                  <span>Mon CV</span>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="transition-transform group-hover:translate-y-0.5"
+                  >
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                </a>
+                <a
                   href="https://github.com/harelmarin"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3 rounded-full border border-black/20 bg-white hover:bg-black hover:text-white hover:border-black transition-all duration-300 font-inter text-[13px] font-bold text-black"
+                  className="px-8 py-3 rounded-full border border-black/20 bg-white hover:bg-black hover:text-white hover:border-black transition-all duration-300 font-inter text-[13px] font-black text-black"
                 >
                   GitHub
                 </a>
@@ -155,7 +178,7 @@ const Home = () => {
         </section>
       </main>
 
-      <footer className="w-full py-8 md:py-12 mt-12 md:mt-0 border-t border-black/5">
+      <footer className="w-full py-8 md:py-12 mt-12 border-t border-black/5">
         <div className="section-container flex flex-col md:flex-row items-center justify-between text-black/60 text-[11px] md:text-[12px] font-spacemono font-bold uppercase tracking-widest gap-4">
           <div className="flex gap-2 md:gap-4">
             <span>© 2026 Marin Harel</span>

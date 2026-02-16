@@ -7,7 +7,6 @@
 }
 
 body {
-  scroll-behavior: smooth;
   background: white;
   color: #1a1a1a;
   overflow-x: hidden;
