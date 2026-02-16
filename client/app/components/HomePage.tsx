@@ -6,6 +6,7 @@ import BackgroundEffects from './BackgroundEffects';
 import ContactButton from './ContactButton';
 import { motion } from 'framer-motion';
 import HorizontalMarquee from './HorizontalMarquee';
+import Magnetic from './Magnetic';
 
 // ... (previous code)
 export type Project = {
@@ -140,38 +141,44 @@ const Home = () => {
               </p>
 
               <div className="flex flex-wrap gap-4 items-center justify-center">
-                <ContactButton />
-                <a
-                  href="/cv.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-2 px-8 py-3 bg-white border border-black/10 text-black rounded-full font-inter text-[13px] font-black transition-all hover:border-black hover:bg-black/5 active:scale-95"
-                >
-                  <span>Mon CV</span>
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="transition-transform group-hover:translate-y-0.5"
+                <Magnetic>
+                  <ContactButton />
+                </Magnetic>
+                <Magnetic>
+                  <a
+                    href="/cv.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-2 px-8 py-3 bg-white border border-black/10 text-black rounded-full font-inter text-[13px] font-black transition-all hover:border-black hover:bg-black/5 active:scale-95 block"
                   >
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                    <polyline points="7 10 12 15 17 10" />
-                    <line x1="12" y1="15" x2="12" y2="3" />
-                  </svg>
-                </a>
-                <a
-                  href="https://github.com/harelmarin"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-3 rounded-full border border-black/20 bg-white hover:bg-black hover:text-white hover:border-black transition-all duration-300 font-inter text-[13px] font-black text-black"
-                >
-                  GitHub
-                </a>
+                    <span>Mon CV</span>
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="transition-transform group-hover:translate-y-0.5"
+                    >
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="7 10 12 15 17 10" />
+                      <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                  </a>
+                </Magnetic>
+                <Magnetic>
+                  <a
+                    href="https://github.com/harelmarin"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-8 py-3 rounded-full border border-black/20 bg-white hover:bg-black hover:text-white hover:border-black transition-all duration-300 font-inter text-[13px] font-black text-black block"
+                  >
+                    GitHub
+                  </a>
+                </Magnetic>
               </div>
             </div>
           </motion.div>
