@@ -25,12 +25,9 @@ const spaceMono = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://marinharel.fr'),
-  title: {
-    default: 'Portfolio - Marin Harel | Développeur Web & Mobile à Aix-en-Provence',
-    template: '%s | Marin Harel',
-  },
+  title: 'Marin Harel | Développeur Web & Mobile Aix-en-Provence',
   description:
-    "Portfolio de Marin Harel, développeur web et mobile à Aix-en-Provence, passionné par la création d'applications modernes, en recherche d'alternance 2025. Full-stack JS/TS, React, Next.js, Java, Spring, Supabase.",
+    "Développeur web et mobile à Aix-en-Provence. Spécialisé Full-stack React, Next.js, Java Spring. En recherche d'alternance pour 2026.",
   keywords: [
     'Marin Harel',
     'Développeur Web',
@@ -40,66 +37,43 @@ export const metadata: Metadata = {
     'Aix-en-Provence',
     'Full-stack',
     'React',
-    'JavaScript',
-    'TypeScript',
-    'Supabase',
     'Next.js',
     'Spring',
-    'Prisma',
-    'Git',
-    'Développeur Full-stack',
-    'Développeur React',
-    'Portfolio développeur Aix-en-Provence',
-    'Alternance développement web',
   ],
-  authors: [{ name: 'Marin Harel', url: 'https://marinharel.fr' }],
+  authors: [{ name: 'Marin Harel' }],
   creator: 'Marin Harel',
   publisher: 'Marin Harel',
   alternates: {
     canonical: 'https://marinharel.fr',
   },
   openGraph: {
-    title: 'Portfolio - Marin Harel | Développeur Web & Mobile',
+    title: 'Marin Harel | Développeur Web & Mobile',
     description:
-      "Portfolio de Marin Harel, développeur web et mobile spécialisé Fullstack JavaScript/TypeScript: React, Next.js, Node, Java, Spring, à la recherche d'une alternance 2025.",
+      "Portfolio de Marin Harel, développeur full-stack spécialisé React & Spring. Recherche alternance 2026.",
     url: 'https://marinharel.fr',
     type: 'website',
     locale: 'fr_FR',
     siteName: 'Portfolio Marin Harel',
     images: [
       {
-        url: 'https://marinharel.fr/img/CorsicAroma.png',
+        url: '/img/kickr.png',
         width: 1200,
-        height: 675,
-        alt: 'Project CorsicAroma - Marin Harel Portfolio',
+        height: 630,
+        alt: 'Portfolio de Marin Harel',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Marin Harel | Portfolio Développeur à Aix',
+    title: 'Marin Harel | Développeur Web & Mobile',
     description:
-      "Portfolio de Marin Harel, développeur web full-stack en recherche d'alternance à Aix-en-Provence.",
-    creator: '@marinH',
-    images: ['https://marinharel.fr/img/CorsicAroma.png'],
+      "Développeur full-stack en recherche d'alternance 2026 à Aix-en-Provence.",
+    images: ['/img/kickr.png'],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  verification: {
-    // Vous pouvez ajouter vos codes de vérification ici
-    // google: 'votre-code-google',
-    // yandex: 'votre-code-yandex',
-    // yahoo: 'votre-code-yahoo',
-  },
+  }
 };
 
 export default function RootLayout({
@@ -110,37 +84,10 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <meta name="theme-color" content="#141014" />
-        {/* Balise Open Graph (fallback) */}
-        <meta
-          property="og:title"
-          content="Portfolio - Marin Harel | Développeur Web & Mobile à Aix-en-Provence"
-        />
-        <meta
-          property="og:description"
-          content="Portfolio de Marin Harel, développeur web et mobile à Aix-en-Provence, en recherche d'alternance 2025. React, Next.js, Java, Supabase..."
-        />
-        <meta property="og:image" content="https://marinharel.fr/img/CorsicAroma.png" />
-        <meta property="og:url" content="https://marinharel.fr" />
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="fr_FR" />
-        <link rel="canonical" href="https://marinharel.fr" />
-        {/* Twitter Card fallback */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Marin Harel | Portfolio Développeur à Aix"
-        />
-        <meta
-          name="twitter:description"
-          content="Portfolio de Marin Harel, développeur web full-stack en recherche d'alternance à Aix-en-Provence."
-        />
-        <meta name="twitter:image" content="https://marinharel.fr/img/CorsicAroma.png" />
+        <meta name="description" content="Développeur web et mobile à Aix-en-Provence. Spécialisé Full-stack React, Next.js, Java Spring. En recherche d'alternance pour 2026." />
         <meta name="author" content="Marin Harel" />
-        <meta name="geo.region" content="FR-93" />
+        <meta name="geo.region" content="FR" />
         <meta name="geo.placename" content="Aix-en-Provence" />
-        {/* Schema.org Person */}
         <script
           type="application/ld+json"
           suppressHydrationWarning
@@ -158,24 +105,14 @@ export default function RootLayout({
                 addressCountry: 'FR',
               },
               email: 'marinh1812@gmail.com',
-              alumniOf: {
-                '@type': 'EducationalOrganization',
-                name: 'Ynov Campus',
-              },
               sameAs: [
-                'https://marinharel.fr',
                 'https://github.com/harelmarin',
               ],
               knowsAbout: [
-                'Développement Web',
-                'Développement Mobile',
                 'React',
                 'Next.js',
-                'JavaScript',
-                'TypeScript',
-                'Java',
-                'Spring',
-                'Supabase',
+                'Java Spring',
+                'Full-stack development',
               ],
             }),
           }}

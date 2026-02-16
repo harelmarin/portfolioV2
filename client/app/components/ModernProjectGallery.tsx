@@ -28,7 +28,8 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
 
     const handleAction = () => {
         if (project.link) {
-            window.open(project.link, '_blank');
+            const win = window.open(project.link, '_blank', 'noopener,noreferrer');
+            if (win) win.opener = null;
         } else if (project.video) {
             setShowVideo(true);
         }
@@ -38,8 +39,17 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
         <>
             <motion.div
                 ref={container}
-                className="relative group cursor-pointer h-full"
+                className="relative group cursor-pointer h-full focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-[1.5rem]"
                 onClick={handleAction}
+                role="button"
+                tabIndex={0}
+                aria-label={`Voir le projet ${project.title}`}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleAction();
+                    }
+                }}
             >
                 <div className="relative h-full bg-white border border-[#e4e4e7] p-3 rounded-[1.5rem] transition-all duration-500 group-hover:shadow-[0_30px_60px_rgba(0,0,0,0.03)] group-hover:border-black/10 flex flex-col">
                     <div className="relative w-full aspect-video overflow-hidden rounded-xl bg-[#f4f4f5] flex-shrink-0">
@@ -75,9 +85,9 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
                             {project.description}
                         </p>
 
-                        <div className="flex flex-wrap gap-1.5 mt-auto">
+                        <div className="flex flex-wrap gap-2 mt-auto">
                             {project.stacks.map(s => (
-                                <span key={s} className="text-[9px] font-inter font-bold text-black/30 px-2 py-0.5 rounded-md bg-[#f4f4f5] border border-black/5">
+                                <span key={s} className="text-[11px] font-inter font-bold text-black/60 px-2.5 py-1 rounded-md bg-[#f4f4f5] border border-black/10">
                                     {s}
                                 </span>
                             ))}

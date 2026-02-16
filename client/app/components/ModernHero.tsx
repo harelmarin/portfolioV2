@@ -16,14 +16,14 @@ const ModernHero = () => {
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-500"></span>
                     </span>
-                    <span className="font-inter text-[10px] font-bold text-blue-600 uppercase tracking-wider">
+                    <span className="font-inter text-[10px] font-bold text-blue-800 uppercase tracking-wider">
                         Disponible pour une alternance 2026
                     </span>
                 </div>
 
                 <h1 className="font-archivo text-4xl md:text-6xl font-black tracking-tighter text-black mb-8 leading-tight">
                     Développeur Logiciel<br />
-                    <span className="text-black/40">Étudiant en 3ème année.</span>
+                    <span className="text-black/40" role="text" aria-label="Étudiant en troisième année">Étudiant en 3ème année.</span>
                 </h1>
 
                 <p className="text-lg md:text-xl font-inter font-medium text-black/60 max-w-lg mb-12 leading-relaxed">

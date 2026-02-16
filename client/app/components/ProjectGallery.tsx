@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import Image from 'next/image';
 import VideoPreview from './VideoPreview';
 import type { Project } from './HomePage';
 
@@ -16,8 +17,17 @@ const ProjectGallery = ({ projects }: ProjectGalleryProps) => {
         {projects.map((project, idx) => (
           <div
             key={idx}
-            className="group relative border border-[#d4af37]/10 hover:border-[#d4af37]/30 bg-[#0f0f0f] transition-all duration-700 overflow-hidden cursor-pointer"
+            className="group relative border border-[#d4af37]/10 hover:border-[#d4af37]/30 bg-[#0f0f0f] transition-all duration-700 overflow-hidden cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#d4af37]"
             onClick={() => setSelectedProject(project)}
+            role="button"
+            tabIndex={0}
+            aria-label={`Voir le projet ${project.title}`}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setSelectedProject(project);
+              }
+            }}
             style={{
               minHeight: 'auto',
               transition: 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1)'
@@ -25,12 +35,12 @@ const ProjectGallery = ({ projects }: ProjectGalleryProps) => {
           >
             <div className="relative w-full h-56 sm:h-64 md:h-72 lg:h-80 flex items-center justify-center bg-[#0a0a0a] overflow-hidden group/imagevid">
               {project.image ? (
-                <img
+                <Image
                   src={project.image}
                   alt={project.title}
-                  loading="lazy"
-                  className="object-cover w-full h-full transition-all duration-700 group-hover:scale-105"
-                  style={{ transition: 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)' }}
+                  fill
+                  className="object-cover transition-all duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               ) : project.video ? (
                 <div className="w-full h-full relative">

@@ -51,7 +51,7 @@ const ExperienceItem = ({ exp }: { exp: Experience }) => {
 
                 <div className="flex flex-wrap gap-2">
                     {exp.stack.map(s => (
-                        <span key={s} className="text-[10px] font-bold text-black/50 px-2 py-1 rounded-md bg-[#f4f4f5] border border-black/5 uppercase tracking-widest">
+                        <span key={s} className="text-[10px] font-bold text-black/70 px-2 py-1 rounded-md bg-[#f4f4f5] border border-black/10 uppercase tracking-widest">
                             {s}
                         </span>
                     ))}

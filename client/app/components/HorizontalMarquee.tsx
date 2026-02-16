@@ -12,7 +12,6 @@ const HorizontalMarquee = ({
     direction?: 1 | -1,
     className?: string
 }) => {
-    // Determine the x-axis movement based on direction
     const initialX = direction === 1 ? '0%' : '-50%';
     const animateX = direction === 1 ? '-50%' : '0%';
 
@@ -30,7 +29,7 @@ const HorizontalMarquee = ({
             >
                 {/* We repeat the content to ensure seamless loop */}
                 {[...Array(10)].map((_, i) => (
-                    <span key={i} className="font-archivo text-5xl md:text-8xl lg:text-9xl text-black font-black px-4 md:px-10 uppercase tracking-tighter flex items-center select-none">
+                    <span key={i} aria-hidden="true" className="font-archivo text-5xl md:text-8xl lg:text-9xl text-black font-black px-4 md:px-10 uppercase tracking-tighter flex items-center select-none">
                         {text} <span className="text-black/10 mx-6 md:mx-12">•</span>
                     </span>
                 ))}
@@ -46,7 +45,7 @@ const HorizontalMarquee = ({
                 }}
             >
                 {[...Array(10)].map((_, i) => (
-                    <span key={i} className="font-archivo text-5xl md:text-8xl lg:text-9xl text-outline px-4 md:px-10 uppercase tracking-tighter flex items-center select-none">
+                    <span key={i} aria-hidden="true" className="font-archivo text-5xl md:text-8xl lg:text-9xl text-outline px-4 md:px-10 uppercase tracking-tighter flex items-center select-none">
                         {text} <span className="text-black/5 mx-6 md:mx-12">•</span>
                     </span>
                 ))}
