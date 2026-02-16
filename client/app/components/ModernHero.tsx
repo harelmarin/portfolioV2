@@ -35,7 +35,8 @@ const ModernHero = () => {
                     <Magnetic>
                         <a
                             href="#mes-projets"
-                            className="px-8 py-3 bg-black text-white rounded-full font-inter text-[13px] font-black transition-all hover:scale-105 active:scale-95 shadow-lg shadow-black/5 block"
+                            className="px-8 py-3 bg-black text-white rounded-full font-inter text-[13px] font-black transition-all hover:scale-105 active:scale-95 shadow-lg shadow-black/5 block cursor-none"
+                            data-cursor="PROJETS"
                         >
                             Mes Projets
                         </a>
@@ -46,7 +47,8 @@ const ModernHero = () => {
                             href="/cv.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group flex items-center gap-2 px-8 py-3 bg-white border border-black/10 text-black rounded-full font-inter text-[13px] font-black transition-all hover:border-black hover:bg-black/5 active:scale-95 block"
+                            className="group flex items-center gap-2 px-8 py-3 bg-white border border-black/10 text-black rounded-full font-inter text-[13px] font-black transition-all hover:border-black hover:bg-black/5 active:scale-95 block cursor-none"
+                            data-cursor="CV"
                         >
                             <span>Mon CV</span>
                             <svg

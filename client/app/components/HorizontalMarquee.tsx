@@ -16,7 +16,7 @@ const HorizontalMarquee = ({
     const animateX = direction === 1 ? '-50%' : '0%';
 
     return (
-        <div className={`py-8 md:py-12 overflow-hidden whitespace-nowrap border-y border-black/[0.03] bg-black/[0.01] relative flex ${className}`}>
+        <div className={`py-6 md:py-10 overflow-hidden whitespace-nowrap border-y border-black/[0.03] bg-black/[0.01] relative flex ${className}`}>
             <motion.div
                 className="flex flex-row flex-nowrap shrink-0"
                 initial={{ x: initialX }}
@@ -29,7 +29,7 @@ const HorizontalMarquee = ({
             >
                 {/* We repeat the content to ensure seamless loop */}
                 {[...Array(10)].map((_, i) => (
-                    <span key={i} aria-hidden="true" className="font-archivo text-5xl md:text-8xl lg:text-9xl text-black font-black px-4 md:px-10 uppercase tracking-tighter flex items-center select-none">
+                    <span key={i} aria-hidden="true" className="font-archivo text-4xl md:text-6xl lg:text-7xl text-black font-black px-4 md:px-10 uppercase tracking-tighter flex items-center select-none">
                         {text} <span className="text-black/10 mx-6 md:mx-12">•</span>
                     </span>
                 ))}
@@ -45,7 +45,7 @@ const HorizontalMarquee = ({
                 }}
             >
                 {[...Array(10)].map((_, i) => (
-                    <span key={i} aria-hidden="true" className="font-archivo text-5xl md:text-8xl lg:text-9xl text-outline px-4 md:px-10 uppercase tracking-tighter flex items-center select-none">
+                    <span key={i} aria-hidden="true" className="font-archivo text-4xl md:text-6xl lg:text-7xl text-outline px-4 md:px-10 uppercase tracking-tighter flex items-center select-none">
                         {text} <span className="text-black/5 mx-6 md:mx-12">•</span>
                     </span>
                 ))}

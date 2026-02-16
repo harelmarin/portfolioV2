@@ -109,7 +109,7 @@ const Home = () => {
 
         <h2 className="sr-only">Mes Projets</h2>
         {/* Section Projets */}
-        <section id="mes-projets" className="section-container mb-80">
+        <section id="mes-projets" className="section-container mb-64">
           <ModernProjectGallery projects={projects} />
         </section>
 
@@ -174,7 +174,8 @@ const Home = () => {
                     href="https://github.com/harelmarin"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-8 py-3 rounded-full border border-black/20 bg-white hover:bg-black hover:text-white hover:border-black transition-all duration-300 font-inter text-[13px] font-black text-black block"
+                    className="px-8 py-3 rounded-full border border-black/20 bg-white hover:bg-black hover:text-white hover:border-black transition-all duration-300 font-inter text-[13px] font-black text-black block cursor-none"
+                    data-cursor="GITHUB"
                   >
                     GitHub
                   </a>

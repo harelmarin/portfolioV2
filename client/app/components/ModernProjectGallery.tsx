@@ -1,5 +1,5 @@
 'use client';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Project } from './HomePage';
 import VideoPreview from './VideoPreview';
 import { useState, useRef, useEffect } from 'react';
@@ -9,8 +9,16 @@ interface Props {
 }
 
 const ProjectCard = ({ project, index }: { project: Project, index: number }) => {
-    const container = useRef(null);
+    const containerRef = useRef(null);
     const [showVideo, setShowVideo] = useState(false);
+
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "end start"]
+    });
+
+    const y = useTransform(scrollYProgress, [0, 1], [-30, 30]);
+    const smoothY = useSpring(y, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
     useEffect(() => {
         const blockScroll = () => {
@@ -56,12 +64,13 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
     return (
         <>
             <motion.div
-                ref={container}
-                className="relative group cursor-pointer h-full focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-[1.5rem]"
+                ref={containerRef}
+                className="relative group cursor-none h-full focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-[1.5rem]"
                 onClick={handleAction}
                 role="button"
                 tabIndex={0}
                 aria-label={`Voir le projet ${project.title}`}
+                data-cursor="VOIR"
                 onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
@@ -71,11 +80,14 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
             >
                 <div className="relative h-full bg-white border border-[#e4e4e7] p-3 rounded-[1.5rem] transition-all duration-500 group-hover:shadow-[0_30px_60px_rgba(0,0,0,0.03)] group-hover:border-black/10 flex flex-col">
                     <div className="relative w-full aspect-video overflow-hidden rounded-xl bg-[#f4f4f5] flex-shrink-0">
-                        <VideoPreview src={project.video} title={project.title} poster={project.image} />
-                        <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 md:flex hidden items-center justify-center">
-                            <div className="px-6 py-2.5 bg-black text-white rounded-full font-inter text-[11px] font-bold tracking-wider transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                {project.link ? 'Visiter le site' : 'Plein écran'}
-                            </div>
+                        <motion.div
+                            style={{ y: smoothY, scale: 1.15 }}
+                            className="w-full h-full"
+                        >
+                            <VideoPreview src={project.video} title={project.title} poster={project.image} />
+                        </motion.div>
+                        <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 md:flex hidden items-center justify-center pointer-events-none">
+                            {/* The cursor will now show the text */}
                         </div>
                     </div>
 
