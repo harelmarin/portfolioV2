@@ -147,6 +147,7 @@ const Home = () => {
                 <Magnetic>
                   <a
                     href="/cv.pdf"
+                    download="CV_Marin_Harel.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex items-center gap-2 px-8 py-3 bg-white border border-black/10 text-black rounded-full font-inter text-[13px] font-black transition-all hover:border-black hover:bg-black/5 active:scale-95 block"
