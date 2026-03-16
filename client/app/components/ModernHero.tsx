@@ -12,15 +12,7 @@ const ModernHero = () => {
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                 className="flex flex-col items-center"
             >
-                <div className="flex items-center gap-2 mb-10 px-3 py-1 bg-blue-50 border border-blue-100 rounded-full">
-                    <span className="relative flex h-1.5 w-1.5">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-500"></span>
-                    </span>
-                    <span className="font-inter text-[10px] font-bold text-blue-800 uppercase tracking-wider">
-                        Disponible pour une alternance 2026
-                    </span>
-                </div>
+
 
                 <h1 className="font-archivo text-4xl md:text-6xl font-black tracking-tighter text-black mb-8 leading-tight">
                     Développeur Logiciel<br />

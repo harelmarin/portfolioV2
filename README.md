@@ -72,7 +72,7 @@ This project is open source and available under the [MIT License](LICENSE).
 ## Contact
 
 Créons quelque chose de mémorable ensemble.
-Actuellement à la recherche d'une alternance pour 2026. Basé à Aix-en-Provence, France.
+Basé à Ajaccio / Aix-en-Provence, France.
 
 - [GitHub](https://github.com/harelmarin)
 - [LinkedIn](https://www.linkedin.com/in/marin-harel/)

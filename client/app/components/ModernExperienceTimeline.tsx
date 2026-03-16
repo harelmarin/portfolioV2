@@ -2,15 +2,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
-type Experience = {
-    title: string;
-    company: string;
-    period: string;
-    location: string;
-    stack: string[];
-    description: string;
-    details: string[];
-};
+import { Experience } from '../types';
 
 interface Props {
     experiences: Experience[];
@@ -50,7 +42,7 @@ const ExperienceItem = ({ exp }: { exp: Experience }) => {
                 </ul>
 
                 <div className="flex flex-wrap gap-2">
-                    {exp.stack.map(s => (
+                    {exp.stack.map((s: string) => (
                         <span key={s} className="text-[10px] font-bold text-black/70 px-2 py-1 rounded-md bg-[#f4f4f5] border border-black/10 uppercase tracking-widest">
                             {s}
                         </span>

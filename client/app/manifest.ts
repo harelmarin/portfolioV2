@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Portfolio - Marin Harel | Développeur Web & Mobile',
     short_name: 'Marin Harel',
-    description: "Portfolio de Marin Harel, développeur web et mobile à Aix-en-Provence, en recherche d'alternance 2025.",
+    description: "Portfolio de Marin Harel, développeur web et mobile à Ajaccio / Aix-en-Provence.",
     start_url: '/',
     display: 'standalone',
     background_color: '#0a0a0a',

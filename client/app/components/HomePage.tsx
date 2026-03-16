@@ -7,92 +7,7 @@ import ContactButton from './ContactButton';
 import { motion } from 'framer-motion';
 import HorizontalMarquee from './HorizontalMarquee';
 import Magnetic from './Magnetic';
-
-// ... (previous code)
-export type Project = {
-  title: string;
-  category: string;
-  description: string;
-  image: string;
-  video: string;
-  stacks: string[];
-  link?: string;
-  isLive?: boolean;
-  detailedDescription?: string;
-  stackDetails?: {
-    frontend?: string;
-    backend?: string;
-    infra?: string;
-  };
-};
-
-const projects: Project[] = [
-  {
-    title: 'kickrhq.com',
-    category: 'Application Web Fullstack',
-    description:
-      "Plateforme sociale de notation footballistique. KickrHQ agrège des données de matchs pour permettre aux utilisateurs de noter leurs rencontres et suivre l'activité de leurs proches. Architecture Spring Boot / React auto-hébergée sur VPS personnel.",
-    detailedDescription:
-      "Plateforme complète dédiée aux passionnés de football et de statistiques. KickrHQ agrège, analyse et visualise des données de matchs en temps réel. Développée avec une approche 'Clean Architecture', l'application garantit performance et maintenabilité. Le backend Spring Boot gère des millions d'événements, tandis que le frontend React offre une expérience utilisateur fluide et interactive. L'infrastructure, entièrement conteneurisée et orchestrée sur un VPS privé, démontre une maîtrise complète du cycle de vie logiciel, du code au déploiement.",
-    image: '/img/kickr.png',
-    video: '',
-    stacks: ['Spring Boot', 'React', 'Docker', 'VPS'],
-    link: 'https://kickrhq.com',
-    isLive: true,
-    stackDetails: {
-      frontend: 'React, Vite, Tailwind',
-      backend: 'Spring Boot 3, Java 21, PostgreSQL',
-      infra: 'Docker, Nginx, GitHub Actions, VPS Debian',
-    }
-  },
-  {
-    title: 'CorsicAroma',
-    category: 'Application Web / Design UX',
-    description:
-      "Application web de recommandation personnalisée d'huiles essentielles corses. Un système basé sur un questionnaire intelligent exploitant la puissance de Supabase pour des conseils sur mesure.",
-    detailedDescription:
-      "Une immersion numérique dans l'univers des senteurs corses. Ce projet allie design émotionnel et efficacité technique pour guider l'utilisateur vers l'huile essentielle idéale. Au-delà du catalogue e-commerce, l'application propose un questionnaire intelligent qui cerne les besoins de l'utilisateur pour formuler des recommandations personnalisées. L'interface, minimaliste et élégante, met en valeur l'identité visuelle de la marque, tandis que Supabase assure une gestion des données temps réel performante et sécurisée.",
-    image: '',
-    video: '/img/CorsicAroma-pres.mp4',
-    stacks: ['React', 'Tailwind', 'Supabase', 'Git'],
-    stackDetails: {
-      frontend: 'React, Tailwind CSS, Framer Motion',
-      backend: 'Supabase (PostgreSQL), Edge Functions',
-      infra: 'Vercel, Git'
-    }
-  },
-];
-
-const experiences = [
-  {
-    title: 'Alternant Développeur logiciel',
-    company: 'Glintware',
-    period: '2025 — 2026',
-    location: 'Aix-en-Provence',
-    stack: ['Java', 'Spring', 'Docker', 'Git'],
-    description: `Alternance dans une startup éditrice de solution logicielle. J'ai travaillé en équipe sur un projet Java Spring, pris part à la maintenance, aux tests et à l'évolution fonctionnelle d'une application métier.`,
-    details: [
-      'Développement et maintenance d’applications Java Spring en POO',
-      'Implémentation de nouvelles fonctionnalités et refactoring',
-      'Tests unitaires et qualité logicielle',
-      'Participation aux dailies et revues de code',
-    ],
-  },
-  {
-    title: 'Stage — Web service et interface',
-    company: 'CorsicAroma',
-    period: '2025',
-    location: 'Corse',
-    stack: ['React', 'Supabase', 'Figma', 'GitHub'],
-    description: `Projet numérique autour des huiles essentielles corses. J'ai conçu une appli web interactive, un questionnaire dynamique et une base Supabase pour des recommandations personnalisées, en lien direct avec le client pour l’UX globale.`,
-    details: [
-      'Interface web réactive et responsive',
-      'Modélisation base relationnelle sous Supabase',
-      'Maquettes et parcours utilisateur (Figma)',
-      'Questionnaire dynamique avec recommandations',
-    ],
-  },
-];
+import { projects, experiences } from '../data/portfolioData';
 
 const Home = () => {
   return (
@@ -133,11 +48,11 @@ const Home = () => {
             <div className="flex flex-col items-center">
 
               <h3 className="font-archivo text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter mb-8 text-black leading-[0.9] uppercase">
-                Recherche<br />d'Alternance<br />pour 2026.
+                Basé à<br />Ajaccio / Aix.
               </h3>
 
               <p className="text-black/60 text-lg md:text-2xl mb-12 font-medium max-w-xl mx-auto leading-relaxed">
-                Disponible sur Aix-en-Provence ou Ajaccio.
+                N'hésitez pas à me contacter pour toute collaboration.
               </p>
 
               <div className="flex flex-wrap gap-4 items-center justify-center">
@@ -194,7 +109,7 @@ const Home = () => {
           </div>
           <div className="hidden md:block w-px h-4 bg-black/10" />
           <div className="flex gap-4">
-            <span>Aix-en-Provence, FR</span>
+            <span>Ajaccio / Aix-en-Provence, FR</span>
           </div>
         </div>
       </footer>

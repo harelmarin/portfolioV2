@@ -1,6 +1,6 @@
 'use client';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
-import { Project } from './HomePage';
+import { Project } from '../types';
 import VideoPreview from './VideoPreview';
 import { useState, useRef, useEffect } from 'react';
 
@@ -61,6 +61,8 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
         }
     };
 
+    const isLogo = project.image.toLowerCase().includes('logo');
+
     return (
         <>
             <motion.div
@@ -81,10 +83,10 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
                 <div className="relative h-full bg-white border border-[#e4e4e7] p-3 rounded-[1.5rem] transition-all duration-500 group-hover:shadow-[0_30px_60px_rgba(0,0,0,0.03)] group-hover:border-black/10 flex flex-col">
                     <div className="relative w-full aspect-video overflow-hidden rounded-xl bg-[#f4f4f5] flex-shrink-0">
                         <motion.div
-                            style={{ y: smoothY, scale: 1.15 }}
+                            style={{ y: smoothY, scale: isLogo ? 1 : 1.0 }}
                             className="w-full h-full"
                         >
-                            <VideoPreview src={project.video} title={project.title} poster={project.image} />
+                            <VideoPreview src={project.video} title={project.title} poster={project.image} alt={project.altImage} />
                         </motion.div>
                         <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 md:flex hidden items-center justify-center pointer-events-none">
                             {/* The cursor will now show the text */}
@@ -116,7 +118,7 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
                         </p>
 
                         <div className="flex flex-wrap gap-2 mt-auto">
-                            {project.stacks.map(s => (
+                            {project.stacks.map((s: string) => (
                                 <span key={s} className="text-[11px] font-inter font-bold text-black/60 px-2.5 py-1 rounded-md bg-[#f4f4f5] border border-black/10">
                                     {s}
                                 </span>

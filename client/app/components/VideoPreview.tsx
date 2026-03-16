@@ -5,9 +5,10 @@ interface VideoPreviewProps {
   src: string;
   title: string;
   poster?: string; // vignette optionnelle
+  alt?: string;
 }
 
-const VideoPreview = ({ src, title, poster }: VideoPreviewProps) => {
+const VideoPreview = ({ src, title, poster, alt }: VideoPreviewProps) => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [hovered, setHovered] = React.useState(false);
   const [isTouchDevice, setIsTouchDevice] = React.useState(false);
@@ -81,14 +82,16 @@ const VideoPreview = ({ src, title, poster }: VideoPreviewProps) => {
 
   if (isTouchDevice || !src) {
     const resolvedPoster = generatedPoster || poster;
+    const resolvedAlt = alt || `Aperçu du projet ${title}`;
+    const isLogo = resolvedPoster?.toLowerCase().includes('logo');
     return (
       <div className="absolute inset-0 w-full h-full" style={{ zIndex: 1 }}>
         {resolvedPoster ? (
           <Image
             src={resolvedPoster}
-            alt={`Aperçu du projet ${title}`}
+            alt={resolvedAlt}
             fill
-            className="object-cover will-change-transform"
+            className={`${isLogo ? 'object-contain p-4 md:p-6' : 'object-cover'} will-change-transform`}
             sizes="(max-width: 768px) 100vw, 50vw"
             priority={false}
           />
