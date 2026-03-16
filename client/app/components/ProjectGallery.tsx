@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import VideoPreview from './VideoPreview';
-import type { Project } from './HomePage';
+import type { Project } from '../types';
 
 interface ProjectGalleryProps {
   projects: Project[];
