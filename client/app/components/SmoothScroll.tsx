@@ -23,7 +23,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
         window.lenis = lenis;
 
-        // Global handle for anchor links
+        
         const handleAnchorClick = (e: MouseEvent) => {
             const target = e.target as HTMLElement;
             const link = target.closest('a');

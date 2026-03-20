@@ -2,6 +2,7 @@
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Project } from '../types';
 import VideoPreview from './VideoPreview';
+import Magnetic from './Magnetic';
 import { useState, useRef, useEffect } from 'react';
 
 interface Props {
@@ -37,7 +38,7 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
 
         blockScroll();
 
-        // Secondary attempt in case lenis initialized later
+        
         let timeout: NodeJS.Timeout;
         if (showVideo) {
             timeout = setTimeout(blockScroll, 100);
@@ -65,14 +66,15 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
 
     return (
         <>
+        <Magnetic strength={0.15}>
             <motion.div
                 ref={containerRef}
-                className="relative group cursor-none h-full focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-[1.5rem]"
+                className="relative group h-full focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-[1.5rem] cursor-pointer"
                 onClick={handleAction}
                 role="button"
                 tabIndex={0}
                 aria-label={`Voir le projet ${project.title}`}
-                data-cursor="VOIR"
+                
                 onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
@@ -89,7 +91,7 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
                             <VideoPreview src={project.video} title={project.title} poster={project.image} alt={project.altImage} />
                         </motion.div>
                         <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 md:flex hidden items-center justify-center pointer-events-none">
-                            {/* The cursor will now show the text */}
+                            
                         </div>
                     </div>
 
@@ -127,6 +129,7 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
                     </div>
                 </div>
             </motion.div>
+        </Magnetic>
 
             <AnimatePresence>
                 {showVideo && (

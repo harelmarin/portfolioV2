@@ -23,19 +23,19 @@ const Home = () => {
         <HorizontalMarquee text="Mes Projets" speed={40} direction={-1} className="mb-12" />
 
         <h2 className="sr-only">Mes Projets</h2>
-        {/* Section Projets */}
+        
         <section id="mes-projets" className="section-container mb-64">
           <ModernProjectGallery projects={projects} />
         </section>
 
-        {/* Section Expérience */}
+        
         <h2 className="sr-only">Mes Expériences</h2>
         <HorizontalMarquee text="Mes Expériences" speed={50} direction={1} className="mb-12" />
         <section id="experiences" className="section-container mb-64">
           <ModernExperienceTimeline experiences={experiences} />
         </section>
 
-        {/* Section Contact Minimaliste - Hero Style */}
+        
         <h2 className="sr-only">Me Contacter</h2>
         <HorizontalMarquee text="Me Contacter" speed={60} direction={-1} className="mb-12" />
         <section id="contact" className="section-container pb-32 md:pb-40 mb-12 md:mb-0 border-t border-transparent flex flex-col items-center text-center">
@@ -65,7 +65,7 @@ const Home = () => {
                     download="CV_Marin_Harel.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center gap-2 px-8 py-3 bg-white border border-black/10 text-black rounded-full font-inter text-[13px] font-black transition-all hover:border-black hover:bg-black/5 active:scale-95 block"
+                    className="group flex items-center gap-2 px-8 py-3 bg-white border border-black/10 text-black rounded-full font-inter text-[13px] font-black transition-all hover:border-black hover:bg-black/5 active:scale-95 block cursor-pointer"
                   >
                     <span>Mon CV</span>
                     <svg
@@ -90,8 +90,8 @@ const Home = () => {
                     href="https://github.com/harelmarin"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-8 py-3 rounded-full border border-black/20 bg-white hover:bg-black hover:text-white hover:border-black transition-all duration-300 font-inter text-[13px] font-black text-black block cursor-none"
-                    data-cursor="GITHUB"
+                    className="px-8 py-3 rounded-full border border-black/20 bg-white hover:bg-black hover:text-white hover:border-black transition-all duration-300 font-inter text-[13px] font-black text-black block cursor-pointer"
+                    
                   >
                     GitHub
                   </a>
