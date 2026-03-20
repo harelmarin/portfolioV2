@@ -65,7 +65,7 @@ const Home = () => {
                     download="CV_Marin_Harel.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center gap-2 px-8 py-3 bg-white border border-black/10 text-black rounded-full font-inter text-[13px] font-black transition-all hover:border-black hover:bg-black/5 active:scale-95 block"
+                    className="group flex items-center gap-2 px-8 py-3 bg-white border border-black/10 text-black rounded-full font-inter text-[13px] font-black transition-all hover:border-black hover:bg-black/5 active:scale-95 block cursor-pointer"
                   >
                     <span>Mon CV</span>
                     <svg
@@ -90,7 +90,7 @@ const Home = () => {
                     href="https://github.com/harelmarin"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-8 py-3 rounded-full border border-black/20 bg-white hover:bg-black hover:text-white hover:border-black transition-all duration-300 font-inter text-[13px] font-black text-black block "
+                    className="px-8 py-3 rounded-full border border-black/20 bg-white hover:bg-black hover:text-white hover:border-black transition-all duration-300 font-inter text-[13px] font-black text-black block cursor-pointer"
                     
                   >
                     GitHub

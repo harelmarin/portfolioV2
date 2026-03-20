@@ -2,13 +2,13 @@ import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Portfolio - Marin Harel | Développeur Web & Mobile',
+    name: 'Marin Harel | Portfolio',
     short_name: 'Marin Harel',
-    description: "Portfolio de Marin Harel, développeur web et mobile à Ajaccio / Aix-en-Provence.",
+    description: 'Portfolio de Marin Harel, Développeur Full-stack React & Java Spring.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#0a0a0a',
-    theme_color: '#141014',
+    background_color: '#ffffff',
+    theme_color: '#000000',
     icons: [
       {
         src: '/favicon.ico',
@@ -18,4 +18,3 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
   };
 }
-

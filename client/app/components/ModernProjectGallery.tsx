@@ -67,7 +67,7 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
         <>
             <motion.div
                 ref={containerRef}
-                className="relative group  h-full focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-[1.5rem]"
+                className="relative group h-full focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-[1.5rem] cursor-pointer"
                 onClick={handleAction}
                 role="button"
                 tabIndex={0}

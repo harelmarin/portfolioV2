@@ -103,7 +103,7 @@ const VideoPreview = ({ src, title, poster, alt }: VideoPreviewProps) => {
 
   return (
     <div
-      className="absolute inset-0 w-full h-full"
+      className="absolute inset-0 w-full h-full cursor-pointer"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       tabIndex={-1}
@@ -115,7 +115,7 @@ const VideoPreview = ({ src, title, poster, alt }: VideoPreviewProps) => {
         muted
         playsInline
         preload="metadata"
-        className={`object-cover w-full h-full transition-all duration-700 group-hover:scale-105 will-change-transform`}
+        className={`object-cover w-full h-full transition-all duration-700 will-change-transform`}
         style={{
           transition: 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)',
           transform: 'translateZ(0)',

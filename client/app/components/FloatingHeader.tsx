@@ -49,7 +49,8 @@ const FloatingHeader = () => {
                         <Magnetic key={link.href}>
                             <a
                                 href={link.href}
-                                className={`relative px-4 py-2 font-inter text-[13px] font-medium transition-colors duration-300 block ${activeHash === link.href ? 'text-black' : 'text-[#71717a] hover:text-black'
+                                aria-current={activeHash === link.href ? 'page' : undefined}
+                                className={`relative px-4 py-2 font-inter text-[13px] font-medium transition-colors duration-300 block cursor-pointer ${activeHash === link.href ? 'text-black' : 'text-[#71717a] hover:text-black'
                                     }`}
                             >
                                 {activeHash === link.href && (

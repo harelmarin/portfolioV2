@@ -25,7 +25,7 @@ const SkillsGrid = () => {
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.05 }}
                     
-                    className="group relative p-6 bg-[#fcfcfc] border border-black/5 rounded-2xl flex flex-col items-center justify-center gap-3 transition-all duration-300 hover:border-black/10  overflow-hidden"
+                    className="group relative p-6 bg-[#fcfcfc] border border-black/5 rounded-2xl flex flex-col items-center justify-center gap-3 transition-all duration-300 hover:border-black/10 overflow-hidden cursor-pointer"
                 >
                     
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.03)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
