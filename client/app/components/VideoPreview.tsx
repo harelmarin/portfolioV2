@@ -4,7 +4,7 @@ import Image from 'next/image';
 interface VideoPreviewProps {
   src: string;
   title: string;
-  poster?: string; // vignette optionnelle
+  poster?: string; 
   alt?: string;
 }
 
@@ -23,7 +23,7 @@ const VideoPreview = ({ src, title, poster, alt }: VideoPreviewProps) => {
     setIsTouchDevice(Boolean(touch));
   }, []);
 
-  // Génération d'une vignette depuis la première frame (mobile/tactile)
+
   React.useEffect(() => {
     if (!isTouchDevice) return;
     let revoked = false;
@@ -34,10 +34,8 @@ const VideoPreview = ({ src, title, poster, alt }: VideoPreviewProps) => {
     tempVideo.preload = 'auto';
     const handleLoaded = () => {
       try {
-        // Aller légèrement après 0 pour éviter frame noire
         tempVideo.currentTime = Math.min(0.1, tempVideo.duration || 0.1);
       } catch {
-        // ignore
       }
     };
     const handleSeeked = () => {
@@ -52,12 +50,11 @@ const VideoPreview = ({ src, title, poster, alt }: VideoPreviewProps) => {
           if (!revoked) setGeneratedPoster(dataUrl);
         }
       } catch {
-        // ignore
       }
     };
     tempVideo.addEventListener('loadedmetadata', handleLoaded);
     tempVideo.addEventListener('seeked', handleSeeked);
-    // Déclenche le chargement
+
     tempVideo.load();
 
     return () => {
@@ -68,7 +65,7 @@ const VideoPreview = ({ src, title, poster, alt }: VideoPreviewProps) => {
   }, [isTouchDevice, src]);
 
   React.useEffect(() => {
-    if (isTouchDevice) return; // mobile: pas d'autoplay ici
+    if (isTouchDevice) return; 
     const video = videoRef.current;
     if (!video) return;
     if (hovered) {

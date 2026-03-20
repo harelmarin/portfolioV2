@@ -24,10 +24,10 @@ const SkillsGrid = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.05 }}
-                    data-cursor={skill.level}
-                    className="group relative p-6 bg-[#fcfcfc] border border-black/5 rounded-2xl flex flex-col items-center justify-center gap-3 transition-all duration-300 hover:border-black/10 cursor-none overflow-hidden"
+                    
+                    className="group relative p-6 bg-[#fcfcfc] border border-black/5 rounded-2xl flex flex-col items-center justify-center gap-3 transition-all duration-300 hover:border-black/10  overflow-hidden"
                 >
-                    {/* Glow effect */}
+                    
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.03)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                     <span className="font-archivo text-lg font-black text-black group-hover:scale-110 transition-transform duration-300">
@@ -37,7 +37,7 @@ const SkillsGrid = () => {
                         {skill.category}
                     </span>
 
-                    {/* Subtle bottom line glow */}
+                    
                     <div className="absolute bottom-0 left-0 w-full h-[2px] bg-black/5 group-hover:bg-black/20 transition-colors" />
                 </motion.div>
             ))}

@@ -27,7 +27,7 @@ const HorizontalMarquee = ({
                     ease: "linear",
                 }}
             >
-                {/* We repeat the content to ensure seamless loop */}
+                
                 {[...Array(10)].map((_, i) => (
                     <span key={i} aria-hidden="true" className="font-archivo text-4xl md:text-6xl lg:text-7xl text-black font-black px-4 md:px-10 uppercase tracking-tighter flex items-center select-none">
                         {text} <span className="text-black/10 mx-6 md:mx-12">•</span>

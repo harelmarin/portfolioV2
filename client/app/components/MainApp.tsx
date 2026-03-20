@@ -26,7 +26,7 @@ export default function MainApp() {
         )}
       </AnimatePresence>
 
-      {/* Main Content Area */}
+      
       <div className={introComplete ? 'relative' : 'fixed inset-0 opacity-0 pointer-events-none'}>
         <SmoothScroll>
           <motion.div

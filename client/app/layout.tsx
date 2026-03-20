@@ -1,5 +1,4 @@
 import './globals.css';
-import CustomCursor from './components/CustomCursor';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import type { Metadata } from 'next';
 import { Archivo, Inter } from 'next/font/google';
@@ -137,7 +136,6 @@ export default function RootLayout({
         />
       </head>
       <body className={`${archivo.variable} ${inter.variable} ${spaceMono.variable} bg-white text-black font-sans antialiased overflow-x-hidden`}>
-        <CustomCursor />
         {children}
         <SpeedInsights />
       </body>
