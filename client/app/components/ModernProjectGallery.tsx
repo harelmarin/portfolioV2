@@ -2,6 +2,7 @@
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Project } from '../types';
 import VideoPreview from './VideoPreview';
+import Magnetic from './Magnetic';
 import { useState, useRef, useEffect } from 'react';
 
 interface Props {
@@ -65,6 +66,7 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
 
     return (
         <>
+        <Magnetic strength={0.15}>
             <motion.div
                 ref={containerRef}
                 className="relative group h-full focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-[1.5rem] cursor-pointer"
@@ -127,6 +129,7 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
                     </div>
                 </div>
             </motion.div>
+        </Magnetic>
 
             <AnimatePresence>
                 {showVideo && (

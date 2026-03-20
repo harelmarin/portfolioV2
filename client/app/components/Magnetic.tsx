@@ -2,7 +2,7 @@
 import React, { useRef, useState } from 'react'
 import { motion } from 'framer-motion';
 
-export default function Magnetic({ children }: { children: React.ReactNode }) {
+export default function Magnetic({ children, strength = 0.5 }: { children: React.ReactNode, strength?: number }) {
     const ref = useRef<HTMLDivElement>(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -13,7 +13,7 @@ export default function Magnetic({ children }: { children: React.ReactNode }) {
             const { height, width, left, top } = rect;
             const middleX = clientX - (left + width / 2)
             const middleY = clientY - (top + height / 2)
-            setPosition({ x: middleX * 0.35, y: middleY * 0.35 })
+            setPosition({ x: middleX * strength, y: middleY * strength })
         }
     }
 
